@@ -1,0 +1,218 @@
+---
+import siteContent from '../data/siteContent.json';
+const { navigation, site } = siteContent;
+---
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="/" class="header__logo" aria-label={`${site.name} — Retour à l'accueil`}>
+      <svg class="header__logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="var(--color-accent)" />
+        <path d="M8 22L16 10L24 22H8Z" fill="white" opacity="0.9" />
+      </svg>
+      <span class="header__logo-text">{site.name}</span>
+    </a>
+
+    <nav class="header__nav" id="main-nav" aria-label="Navigation principale">
+      <ul class="header__nav-list" id="nav-list" role="list">
+        {navigation.map((item) => (
+          <li class="header__nav-item">
+            <a href={item.href} class="header__nav-link">{item.text}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a href="#contact" class="btn btn--primary header__cta">Contact</a>
+      <button
+        class="header__hamburger"
+        id="hamburger-btn"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-list"
+        aria-label="Ouvrir le menu de navigation"
+      >
+        <span class="header__hamburger-line" aria-hidden="true"></span>
+        <span class="header__hamburger-line" aria-hidden="true"></span>
+        <span class="header__hamburger-line" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    background: var(--color-bg-overlay);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+    transition: background var(--transition-base);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .header__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+  }
+
+  .header__logo:hover {
+    color: var(--color-text);
+  }
+
+  .header__nav-list {
+    display: flex;
+    gap: var(--space-1);
+    list-style: none;
+  }
+
+  .header__nav-link {
+    display: block;
+    padding: var(--space-2) var(--space-4);
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+  }
+
+  .header__nav-link:hover {
+    color: var(--color-text);
+    background: var(--color-bg-card);
+  }
+
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .header__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: var(--space-2);
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+  }
+
+  .header__hamburger:hover {
+    border-color: var(--color-accent);
+  }
+
+  .header__hamburger-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 1px;
+    transition: all var(--transition-base);
+    transform-origin: center;
+  }
+
+  .header__hamburger[aria-expanded="true"] .header__hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .header__hamburger[aria-expanded="true"] .header__hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  .header__hamburger[aria-expanded="true"] .header__hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile styles */
+  @media (max-width: 767px) {
+    .header__nav {
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--color-bg);
+      padding: var(--space-8) var(--space-5);
+      transform: translateX(100%);
+      transition: transform var(--transition-base);
+      z-index: var(--z-overlay);
+    }
+
+    .header__nav.is-open {
+      transform: translateX(0);
+    }
+
+    .header__nav-list {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .header__nav-link {
+      font-size: var(--text-xl);
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+    }
+
+    .header__hamburger {
+      display: flex;
+    }
+
+    .header__cta {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const hamburger = document.getElementById('hamburger-btn');
+  const nav = document.getElementById('main-nav');
+
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!isOpen));
+      hamburger.setAttribute('aria-label', isOpen ? 'Ouvrir le menu de navigation' : 'Fermer le menu de navigation');
+      nav.classList.toggle('is-open');
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    });
+
+    // Close on link click
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Ouvrir le menu de navigation');
+        nav.classList.remove('is-open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Ouvrir le menu de navigation');
+        nav.classList.remove('is-open');
+        document.body.style.overflow = '';
+        hamburger.focus();
+      }
+    });
+  }
+</script>

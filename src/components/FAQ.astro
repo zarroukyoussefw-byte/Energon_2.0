@@ -1,0 +1,118 @@
+---
+import siteContent from '../data/siteContent.json';
+const { faq } = siteContent;
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.items.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+---
+
+<section class="faq section" id="faq" aria-labelledby="faq-heading">
+  <div class="container container--narrow">
+    <div class="section__header">
+      <h2 id="faq-heading" class="section__title">
+        <span class="gradient-text">{faq.headline}</span>
+      </h2>
+      <p class="section__subtitle">{faq.subheadline}</p>
+    </div>
+
+    <div class="faq__list">
+      {faq.items.map((item, i) => (
+        <details class="faq__item" name="faq">
+          <summary class="faq__question">
+            <span>{item.question}</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="faq__answer">
+            <p>{item.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</section>
+
+<style>
+  .faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .faq__item {
+    background: var(--gradient-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color var(--transition-base);
+  }
+
+  .faq__item:hover {
+    border-color: var(--color-border-hover);
+  }
+
+  .faq__item[open] {
+    border-color: var(--color-accent-glow);
+  }
+
+  .faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+    cursor: pointer;
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    list-style: none;
+    transition: color var(--transition-fast);
+  }
+
+  .faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__question::marker {
+    display: none;
+    content: '';
+  }
+
+  .faq__question:hover {
+    color: var(--color-accent-light);
+  }
+
+  .faq__chevron {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    transition: transform var(--transition-base);
+  }
+
+  .faq__item[open] .faq__chevron {
+    transform: rotate(180deg);
+    color: var(--color-accent-light);
+  }
+
+  .faq__answer {
+    padding: 0 var(--space-6) var(--space-6);
+  }
+
+  .faq__answer p {
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    font-size: var(--text-sm);
+  }
+</style>

@@ -1,0 +1,95 @@
+---
+import siteContent from '../data/siteContent.json';
+const { cta } = siteContent;
+---
+
+<section class="cta-section" id="contact" aria-labelledby="cta-heading">
+  <div class="cta__bg" aria-hidden="true">
+    <div class="cta__glow cta__glow--1"></div>
+    <div class="cta__glow cta__glow--2"></div>
+  </div>
+
+  <div class="container cta__content">
+    <h2 id="cta-heading" class="cta__title">
+      <span class="gradient-text">{cta.headline}</span>
+    </h2>
+    <p class="cta__description">{cta.description}</p>
+    <a href={cta.button.href} class="btn btn--primary btn--large cta__button">
+      {cta.button.text}
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    position: relative;
+    padding-block: var(--space-20);
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .cta__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .cta__glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+  }
+
+  .cta__glow--1 {
+    top: -30%;
+    left: 20%;
+    width: 400px;
+    height: 400px;
+    background: var(--color-accent);
+    opacity: 0.08;
+  }
+
+  .cta__glow--2 {
+    bottom: -30%;
+    right: 20%;
+    width: 300px;
+    height: 300px;
+    background: var(--color-success);
+    opacity: 0.06;
+  }
+
+  .cta__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .cta__title {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-extrabold);
+    max-width: 700px;
+  }
+
+  .cta__description {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    max-width: 500px;
+    line-height: var(--leading-relaxed);
+  }
+
+  .cta__button {
+    margin-top: var(--space-4);
+  }
+
+  @media (min-width: 768px) {
+    .cta-section {
+      padding-block: var(--space-32);
+    }
+  }
+</style>

@@ -1,0 +1,107 @@
+---
+import siteContent from '../data/siteContent.json';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${siteContent.site.name} — ${siteContent.site.tagline}`,
+  description = siteContent.site.description,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, siteContent.site.url);
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": siteContent.site.name,
+  "url": siteContent.site.url,
+  "logo": `${siteContent.site.url}/images/logo.svg`,
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": siteContent.site.contact.phone,
+    "contactType": "customer service",
+    "areaServed": "FR",
+    "availableLanguage": "French"
+  },
+  "sameAs": Object.values(siteContent.site.socials)
+};
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": siteContent.site.name,
+  "description": siteContent.site.description,
+  "url": siteContent.site.url,
+  "telephone": siteContent.site.contact.phone,
+  "email": siteContent.site.contact.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": siteContent.site.contact.address.street,
+    "addressLocality": siteContent.site.contact.address.city,
+    "postalCode": siteContent.site.contact.address.postalCode,
+    "addressCountry": siteContent.site.contact.address.country
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "48.8606",
+    "longitude": "2.3376"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={`${siteContent.site.url}/images/hero.avif`} />
+  <meta property="og:locale" content={siteContent.site.locale} />
+  <meta property="og:site_name" content={siteContent.site.name} />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${siteContent.site.url}/images/hero.avif`} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Preload critical font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+  <slot />
+</body>
+</html>

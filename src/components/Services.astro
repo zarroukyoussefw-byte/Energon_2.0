@@ -1,0 +1,112 @@
+---
+import siteContent from '../data/siteContent.json';
+const { services } = siteContent;
+
+const iconMap: Record<string, string> = {
+  strategy: '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>',
+  design: '<path d="M12 19l7-7 3 3-7 7-3-3z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/>',
+  development: '<polyline points="16 18 22 12 16 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="8 6 2 12 8 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>',
+  seo: '<circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M11 8v6M8 11h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>',
+  analytics: '<path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>',
+  support: '<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" fill="none"/>'
+};
+---
+
+<section class="services section" id="services" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="section__header">
+      <h2 id="services-heading" class="section__title">
+        <span class="gradient-text">{services.headline}</span>
+      </h2>
+      <p class="section__subtitle">{services.subheadline}</p>
+    </div>
+
+    <div class="services__grid">
+      {services.items.map((service, i) => (
+        <article class="services__card" style={`--delay: ${i * 0.1}s`}>
+          <div class="services__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" set:html={iconMap[service.icon] || iconMap.strategy} />
+          </div>
+          <h3 class="services__card-title">{service.title}</h3>
+          <p class="services__card-description">{service.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .services__card {
+    position: relative;
+    padding: var(--space-8);
+    background: var(--gradient-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+    overflow: hidden;
+  }
+
+  .services__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-hero);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+
+  .services__card:hover {
+    border-color: var(--color-border-hover);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .services__card:hover::before {
+    opacity: 1;
+  }
+
+  .services__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--color-accent-glow);
+    color: var(--color-accent-light);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-5);
+  }
+
+  .services__card-title {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    margin-bottom: var(--space-3);
+  }
+
+  .services__card-description {
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+
+  @media (min-width: 640px) {
+    .services__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

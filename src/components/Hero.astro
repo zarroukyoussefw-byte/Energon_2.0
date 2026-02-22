@@ -1,0 +1,148 @@
+---
+import siteContent from '../data/siteContent.json';
+const { hero } = siteContent;
+---
+
+<section class="hero" id="hero" aria-labelledby="hero-heading">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__gradient"></div>
+    <div class="hero__grid"></div>
+  </div>
+
+  <div class="container hero__content">
+    <div class="hero__text">
+      <h1 id="hero-heading" class="hero__title animate-fade-in-up">
+        <span class="gradient-text">{hero.headline}</span>
+      </h1>
+      <p class="hero__subtitle animate-fade-in-up animate-delay-1">
+        {hero.subheadline}
+      </p>
+      <div class="hero__ctas animate-fade-in-up animate-delay-2">
+        <a href={hero.ctaPrimary.href} class="btn btn--primary btn--large">
+          {hero.ctaPrimary.text}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href={hero.ctaSecondary.href} class="btn btn--secondary btn--large">
+          {hero.ctaSecondary.text}
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__image animate-fade-in-up animate-delay-3">
+      <picture>
+        <source srcset={hero.image.src} type="image/avif" />
+        <source srcset={hero.image.fallback} type="image/webp" />
+        <img
+          src={hero.image.fallback}
+          alt={hero.image.alt}
+          width={hero.image.width}
+          height={hero.image.height}
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-block: var(--space-24) var(--space-16);
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero__gradient {
+    position: absolute;
+    top: -50%;
+    left: -25%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(ellipse at 30% 50%, var(--color-accent-glow) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(0, 210, 160, 0.1) 0%, transparent 50%);
+    animation: fadeIn 1.5s ease;
+  }
+
+  .hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--color-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .hero__title {
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-extrabold);
+    letter-spacing: -0.02em;
+  }
+
+  .hero__subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 540px;
+    margin-top: var(--space-6);
+  }
+
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  .hero__image {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    border: 1px solid var(--color-border);
+  }
+
+  .hero__image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    .hero__content {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hero {
+      padding-block: var(--space-32) var(--space-24);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero__content {
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-16);
+    }
+  }
+</style>
