@@ -1,0 +1,170 @@
+backend:
+  name: github
+  repo: zarroukyoussefw-byte/template-vitrine-2026
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "site-content"
+    label: "Contenu du site"
+    files:
+      - name: "siteContent"
+        label: "Contenu principal"
+        file: "src/data/siteContent.json"
+        format: "json"
+        fields:
+          # ── Site ──
+          - label: "Site"
+            name: "site"
+            widget: "object"
+            fields:
+              - { label: "Nom du site", name: "name", widget: "string" }
+              - { label: "Slogan", name: "tagline", widget: "string" }
+              - { label: "Description SEO", name: "description", widget: "text" }
+              - { label: "URL du site", name: "url", widget: "string" }
+              - { label: "Locale", name: "locale", widget: "string", default: "fr_FR" }
+              - label: "Contact"
+                name: "contact"
+                widget: "object"
+                fields:
+                  - { label: "Téléphone", name: "phone", widget: "string" }
+                  - { label: "Email", name: "email", widget: "string" }
+                  - label: "Adresse"
+                    name: "address"
+                    widget: "object"
+                    fields:
+                      - { label: "Rue", name: "street", widget: "string" }
+                      - { label: "Ville", name: "city", widget: "string" }
+                      - { label: "Code postal", name: "postalCode", widget: "string" }
+                      - { label: "Pays", name: "country", widget: "string", default: "FR" }
+              - label: "Réseaux sociaux"
+                name: "socials"
+                widget: "object"
+                fields:
+                  - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
+                  - { label: "Instagram", name: "instagram", widget: "string", required: false }
+                  - { label: "Twitter / X", name: "twitter", widget: "string", required: false }
+
+          # ── Hero ──
+          - label: "Hero (Accueil)"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Titre principal (BLUF)", name: "headline", widget: "string", hint: "Format BLUF : phrase clé en premier." }
+              - { label: "Sous-titre", name: "subheadline", widget: "text" }
+              - label: "Bouton principal"
+                name: "ctaPrimary"
+                widget: "object"
+                fields:
+                  - { label: "Texte", name: "text", widget: "string" }
+                  - { label: "Lien", name: "href", widget: "string" }
+              - label: "Bouton secondaire"
+                name: "ctaSecondary"
+                widget: "object"
+                fields:
+                  - { label: "Texte", name: "text", widget: "string" }
+                  - { label: "Lien", name: "href", widget: "string" }
+              - label: "Image hero"
+                name: "image"
+                widget: "object"
+                fields:
+                  - { label: "Source (AVIF/SVG)", name: "src", widget: "image" }
+                  - { label: "Fallback (WebP/SVG)", name: "fallback", widget: "image" }
+                  - { label: "Texte alternatif", name: "alt", widget: "string" }
+                  - { label: "Largeur (px)", name: "width", widget: "number", value_type: "int" }
+                  - { label: "Hauteur (px)", name: "height", widget: "number", value_type: "int" }
+
+          # ── Services ──
+          - label: "Services"
+            name: "services"
+            widget: "object"
+            fields:
+              - { label: "Titre de section", name: "headline", widget: "string" }
+              - { label: "Sous-titre", name: "subheadline", widget: "text" }
+              - label: "Liste des services"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Icône", name: "icon", widget: "select", options: ["strategy", "design", "development", "seo", "analytics", "support"] }
+                  - { label: "Titre du service", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text", hint: "Format BLUF : résultat clé en premier, détails ensuite." }
+
+          # ── À propos ──
+          - label: "À propos"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Titre", name: "headline", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Statistiques"
+                name: "stats"
+                widget: "list"
+                fields:
+                  - { label: "Valeur", name: "value", widget: "string" }
+                  - { label: "Libellé", name: "label", widget: "string" }
+              - label: "Image"
+                name: "image"
+                widget: "object"
+                fields:
+                  - { label: "Source (AVIF/SVG)", name: "src", widget: "image" }
+                  - { label: "Fallback (WebP/SVG)", name: "fallback", widget: "image" }
+                  - { label: "Texte alternatif", name: "alt", widget: "string" }
+                  - { label: "Largeur (px)", name: "width", widget: "number", value_type: "int" }
+                  - { label: "Hauteur (px)", name: "height", widget: "number", value_type: "int" }
+
+          # ── FAQ ──
+          - label: "FAQ"
+            name: "faq"
+            widget: "object"
+            fields:
+              - { label: "Titre", name: "headline", widget: "string" }
+              - { label: "Sous-titre", name: "subheadline", widget: "text" }
+              - label: "Questions"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Question", name: "question", widget: "string" }
+                  - { label: "Réponse", name: "answer", widget: "text" }
+
+          # ── CTA ──
+          - label: "Appel à l'action"
+            name: "cta"
+            widget: "object"
+            fields:
+              - { label: "Titre", name: "headline", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Bouton"
+                name: "button"
+                widget: "object"
+                fields:
+                  - { label: "Texte", name: "text", widget: "string" }
+                  - { label: "Lien", name: "href", widget: "string" }
+
+          # ── Footer ──
+          - label: "Pied de page"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Description", name: "description", widget: "string" }
+              - label: "Liens"
+                name: "links"
+                widget: "list"
+                fields:
+                  - { label: "Texte", name: "text", widget: "string" }
+                  - { label: "URL", name: "href", widget: "string" }
+              - label: "Mentions légales"
+                name: "legal"
+                widget: "list"
+                fields:
+                  - { label: "Texte", name: "text", widget: "string" }
+                  - { label: "URL", name: "href", widget: "string" }
+
+          # ── Navigation ──
+          - label: "Menu de navigation"
+            name: "navigation"
+            widget: "list"
+            fields:
+              - { label: "Texte", name: "text", widget: "string" }
+              - { label: "Lien", name: "href", widget: "string" }
