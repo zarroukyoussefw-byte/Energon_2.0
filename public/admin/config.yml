@@ -2,7 +2,8 @@ backend:
   name: github
   repo: zarroukyoussefw-byte/template-vitrine-2026
   branch: main
-  base_url: https://oauth.yourdomain.com  # ← Replace with your OAuth proxy URL on Coolify
+  base_url: https://oauth.energon.cloud  # ← Replace with your OAuth proxy URL on Coolify
+  auth_endpoint: auth
 
 media_folder: "public/images"
 public_folder: "/images"
