@@ -1,15 +1,6 @@
 ---
 import siteContent from '../data/siteContent.json';
 const { services } = siteContent;
-
-const iconMap: Record<string, string> = {
-  strategy: '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>',
-  design: '<path d="M12 19l7-7 3 3-7 7-3-3z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/>',
-  development: '<polyline points="16 18 22 12 16 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="8 6 2 12 8 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>',
-  seo: '<circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M11 8v6M8 11h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>',
-  analytics: '<path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>',
-  support: '<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" fill="none"/>'
-};
 ---
 
 <section class="services section" id="services" aria-labelledby="services-heading">
@@ -22,13 +13,23 @@ const iconMap: Record<string, string> = {
     </div>
 
     <div class="services__grid">
-      {services.items.map((service, i) => (
-        <article class="services__card" style={`--delay: ${i * 0.1}s`}>
-          <div class="services__icon" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" set:html={iconMap[service.icon] || iconMap.strategy} />
-          </div>
+      {services.items.map((service) => (
+        <article class="services__card">
+          <div class="services__emoji" aria-hidden="true">{service.emoji}</div>
           <h3 class="services__card-title">{service.title}</h3>
           <p class="services__card-description">{service.description}</p>
+          {service.features && (
+            <ul class="services__features" role="list">
+              {service.features.map((feature) => (
+                <li class="services__feature">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M2 7l3.5 3.5L12 4" stroke="var(--color-success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          )}
         </article>
       ))}
     </div>
@@ -74,16 +75,10 @@ const iconMap: Record<string, string> = {
     opacity: 1;
   }
 
-  .services__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    background: var(--color-accent-glow);
-    color: var(--color-accent-light);
-    border-radius: var(--radius-md);
+  .services__emoji {
+    font-size: 2rem;
     margin-bottom: var(--space-5);
+    line-height: 1;
   }
 
   .services__card-title {
@@ -96,6 +91,25 @@ const iconMap: Record<string, string> = {
     color: var(--color-text-secondary);
     font-size: var(--text-sm);
     line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-5);
+  }
+
+  .services__features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .services__feature {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    font-weight: var(--weight-medium);
   }
 
   @media (min-width: 640px) {
@@ -106,7 +120,7 @@ const iconMap: Record<string, string> = {
 
   @media (min-width: 1024px) {
     .services__grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>

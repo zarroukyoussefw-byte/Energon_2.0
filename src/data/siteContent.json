@@ -1,113 +1,152 @@
 {
   "site": {
-    "name": "Vitrine 2026",
-    "tagline": "Votre présence digitale, repensée.",
-    "description": "Template de site vitrine ultra-performant conçu aux normes 2026. Performance, accessibilité et SEO au cœur de chaque pixel.",
-    "url": "https://www.example.com",
+    "name": "ENERGON",
+    "tagline": "Votre Croissance Digitale, Automatisée",
+    "description": "Sites web, landing pages et solutions IA conçues pour générer des leads, convertir vos visiteurs et accélérer votre chiffre d'affaires.",
+    "url": "https://energon.cloud",
     "locale": "fr_FR",
     "contact": {
-      "phone": "+33 1 23 45 67 89",
-      "email": "contact@example.com",
+      "phone": "06.99.22.64.99",
+      "email": "zarroukyoussef.w@gmail.com",
       "address": {
-        "street": "12 Rue de l'Innovation",
-        "city": "Paris",
-        "postalCode": "75001",
+        "street": "Lavaur",
+        "city": "Lavaur",
+        "postalCode": "81500",
         "country": "FR"
       }
     },
     "socials": {
-      "linkedin": "https://linkedin.com/company/example",
-      "instagram": "https://instagram.com/example",
-      "twitter": "https://twitter.com/example"
+      "linkedin": "https://linkedin.com/in/zarroukyoussef",
+      "instagram": "",
+      "twitter": ""
     }
   },
   "hero": {
-    "headline": "Transformez votre vision en résultats concrets.",
-    "subheadline": "Nous concevons des solutions digitales sur-mesure qui propulsent votre activité. Performance, design et innovation au service de votre croissance.",
+    "badge": "DISPONIBLE — NOUVEAUX PROJETS",
+    "headline": "Votre Croissance Digitale, Automatisée",
+    "subheadline": "Des sites web, landing pages et solutions IA conçues pour un seul objectif : générer des leads, convertir vos visiteurs et accélérer votre chiffre d'affaires.",
     "ctaPrimary": {
-      "text": "Démarrer votre projet",
+      "text": "Lancer mon projet",
       "href": "#contact"
     },
     "ctaSecondary": {
-      "text": "Découvrir nos services",
-      "href": "#services"
+      "text": "Voir les réalisations",
+      "href": "#portfolio"
     },
+    "stats": [
+      { "value": "50+", "label": "Projets livrés" },
+      { "value": "98%", "label": "Clients satisfaits" },
+      { "value": "<24h", "label": "Temps de réponse" }
+    ],
     "image": {
       "src": "/images/hero.svg",
       "fallback": "/images/hero.svg",
-      "alt": "Équipe créative travaillant sur une solution digitale innovante",
+      "alt": "Solutions digitales ENERGON — sites web, landing pages et IA",
       "width": 1344,
       "height": 768
     }
   },
   "services": {
-    "headline": "Des services conçus pour votre réussite.",
-    "subheadline": "Chaque solution est pensée pour maximiser votre impact digital et accélérer votre croissance.",
+    "headline": "Conçus pour performer",
+    "subheadline": "Chaque solution est pensée pour un impact direct et mesurable sur votre chiffre d'affaires.",
     "items": [
       {
-        "icon": "strategy",
-        "title": "Stratégie Digitale",
-        "description": "Maximisez votre ROI grâce à une stratégie data-driven. Nous analysons votre marché et définissons un plan d'action précis pour atteindre vos objectifs."
+        "icon": "web",
+        "emoji": "⚡",
+        "title": "Sites Web",
+        "description": "Sites vitrines ultra-rapides, optimisés SEO, qui positionnent votre entreprise en première page et convertissent vos visiteurs en clients.",
+        "features": ["SEO première page", "Score 95+ Lighthouse", "Admin autonome"]
       },
       {
-        "icon": "design",
-        "title": "Design & Expérience",
-        "description": "Captivez vos visiteurs dès la première seconde. Nos interfaces allient esthétique moderne et ergonomie intuitive pour convertir chaque visite."
+        "icon": "landing",
+        "emoji": "🎯",
+        "title": "Landing Pages",
+        "description": "Pages de conversion testées et optimisées qui transforment votre trafic en rendez-vous qualifiés et en ventes.",
+        "features": ["Conversion optimisée", "Chargement < 1s", "A/B testing"]
       },
       {
-        "icon": "development",
-        "title": "Développement Web",
-        "description": "Obtenez un site ultra-rapide et fiable. Nous utilisons les technologies les plus performantes pour un temps de chargement minimal et une expérience fluide."
+        "icon": "bot",
+        "emoji": "🤖",
+        "title": "Bots & Automatisation",
+        "description": "Assistants IA et workflows automatisés qui qualifient vos prospects et traitent vos demandes 24h/24.",
+        "features": ["IA conversationnelle", "Qualification leads", "Actif 24/7"]
       },
       {
-        "icon": "seo",
-        "title": "SEO & Visibilité",
-        "description": "Dominez les résultats de recherche. Notre approche SEO technique et sémantique positionne votre site devant vos concurrents sur Google et les IA."
+        "icon": "ai",
+        "emoji": "📊",
+        "title": "Services IA",
+        "description": "Outils d'intelligence artificielle sur mesure : veille concurrentielle, génération de contenu, analyse de données.",
+        "features": ["Veille automatisée", "Rapports sur mesure", "ROI mesurable"]
+      }
+    ]
+  },
+  "portfolio": {
+    "headline": "Des résultats, pas des promesses",
+    "items": [
+      {
+        "metric": "+158%",
+        "metricLabel": "conversions",
+        "category": "Site Web",
+        "title": "E-commerce Mode",
+        "description": "Refonte d'une boutique Shopify — taux de conversion passé de 1.2% à 3.1% en 4 mois."
       },
       {
-        "icon": "analytics",
-        "title": "Analytics & Data",
-        "description": "Prenez des décisions éclairées grâce à la data. Tableaux de bord personnalisés, suivi des conversions et optimisation continue de vos performances."
+        "metric": "−8h",
+        "metricLabel": "admin/sem.",
+        "category": "Application Web",
+        "title": "App de Gestion",
+        "description": "Dashboard interne pour une PME de 45 employés. Réduction du temps admin de 8h/semaine."
       },
       {
-        "icon": "support",
-        "title": "Accompagnement",
-        "description": "Bénéficiez d'un partenaire de confiance. Support réactif, maintenance proactive et évolutions régulières pour garder une longueur d'avance."
+        "metric": "40%",
+        "metricLabel": "tickets auto",
+        "category": "Automatisation IA",
+        "title": "Bot Support Client",
+        "description": "Chatbot pour un site e-commerce traitant 40% des demandes sans intervention humaine."
+      },
+      {
+        "metric": "380",
+        "metricLabel": "leads / 3 sem.",
+        "category": "Landing Page",
+        "title": "Landing Page Formation",
+        "description": "Page d'inscription pour un formateur indépendant — 380 leads qualifiés en 3 semaines."
+      },
+      {
+        "metric": "12",
+        "metricLabel": "clients actifs",
+        "category": "Service IA",
+        "title": "Veille Concurrentielle",
+        "description": "Outil automatisé de monitoring prix et offres pour une agence marketing locale."
+      },
+      {
+        "metric": "35",
+        "metricLabel": "devis/mois",
+        "category": "Site Web",
+        "title": "Site Artisan Plombier",
+        "description": "Site vitrine SEO local — passage de 0 à 35 demandes de devis par mois en 6 mois."
       }
     ]
   },
   "about": {
-    "headline": "L'excellence digitale, depuis 2015.",
-    "description": "Nous sommes une équipe passionnée de stratèges, designers et développeurs. Notre mission : rendre le digital accessible, performant et rentable pour chaque entreprise. Chaque projet est une collaboration étroite où votre vision guide notre expertise technique.",
+    "headline": "Un expert, pas une agence.",
+    "description": "Je suis Youssef, fondateur d'ENERGON. Développeur et consultant digital basé à Lavaur, en Occitanie; j'accompagne les entrepreneurs, artisans et PME qui veulent des résultats concrets. Pas de jargon, pas de réunions inutiles : un interlocuteur unique, des livrables rapides et un objectif clair — faire décoller votre business en ligne.",
     "stats": [
-      {
-        "value": "150+",
-        "label": "Projets livrés"
-      },
-      {
-        "value": "98%",
-        "label": "Clients satisfaits"
-      },
-      {
-        "value": "10",
-        "label": "Années d'expertise"
-      },
-      {
-        "value": "<1s",
-        "label": "Temps de chargement"
-      }
+      { "value": "50+", "label": "Projets livrés" },
+      { "value": "98%", "label": "Clients satisfaits" },
+      { "value": "5", "label": "Années d'expertise" },
+      { "value": "<24h", "label": "Temps de réponse" }
     ],
     "image": {
       "src": "/images/about.svg",
       "fallback": "/images/about.svg",
-      "alt": "Notre équipe dans nos bureaux modernes à Paris",
+      "alt": "Youssef — fondateur d'ENERGON, développeur et consultant digital",
       "width": 800,
       "height": 600
     }
   },
   "faq": {
     "headline": "Questions fréquentes",
-    "subheadline": "Tout ce que vous devez savoir avant de démarrer votre projet avec nous.",
+    "subheadline": "Tout ce que vous devez savoir avant de lancer votre projet avec ENERGON.",
     "items": [
       {
         "question": "Combien de temps faut-il pour créer un site vitrine ?",
@@ -115,7 +154,7 @@
       },
       {
         "question": "Quelles technologies utilisez-vous ?",
-        "answer": "Nous utilisons les technologies les plus performantes de 2026 : Astro pour le rendu statique ultra-rapide, du CSS moderne avec des animations fluides, et une architecture optimisée pour le SEO et l'accessibilité. Chaque choix technique vise un score Lighthouse de 100/100."
+        "answer": "J'utilise les technologies les plus performantes de 2026 : Astro pour le rendu statique ultra-rapide, du CSS moderne avec des animations fluides, et une architecture optimisée pour le SEO et l'accessibilité. Chaque choix technique vise un score Lighthouse de 95+."
       },
       {
         "question": "Mon site sera-t-il optimisé pour le référencement ?",
@@ -123,73 +162,43 @@
       },
       {
         "question": "Proposez-vous un accompagnement après la mise en ligne ?",
-        "answer": "Oui, nous assurons la maintenance, les mises à jour de sécurité et l'optimisation continue de votre site. Nos forfaits d'accompagnement incluent le suivi des performances, les sauvegardes automatiques et un support réactif par email et téléphone."
+        "answer": "Oui, j'assure la maintenance, les mises à jour de sécurité et l'optimisation continue de votre site. Mes forfaits incluent le suivi des performances, les sauvegardes automatiques et un support réactif par email et téléphone."
       },
       {
-        "question": "Le site sera-t-il accessible aux personnes en situation de handicap ?",
-        "answer": "Chaque site que nous livrons respecte les normes WCAG 2.2 niveau AA : navigation clavier complète, contrastes de couleurs optimisés, balises ARIA, textes alternatifs sur les images et structure sémantique. L'accessibilité n'est pas une option, c'est un standard."
+        "question": "Comment se passe la collaboration ?",
+        "answer": "Simple et directe. Un seul interlocuteur du début à la fin. Vous décrivez votre projet, je vous propose une solution avec un devis clair. Réponse sous 24h, pas de réunions inutiles, des livrables rapides."
       }
     ]
   },
   "cta": {
-    "headline": "Prêt à transformer votre présence digitale ?",
-    "description": "Discutons de votre projet et construisons ensemble la solution qui fera la différence.",
+    "headline": "Prêt à passer devant vos concurrents ?",
+    "description": "Décrivez votre projet. Réponse sous 24h.",
     "button": {
-      "text": "Contactez-nous",
-      "href": "#contact"
+      "text": "Envoyer un email",
+      "href": "mailto:zarroukyoussef.w@gmail.com"
+    },
+    "phone": {
+      "text": "06.99.22.64.99",
+      "href": "tel:+33699226499"
     }
   },
   "footer": {
-    "description": "Solutions digitales sur-mesure pour les entreprises ambitieuses.",
+    "description": "Solutions digitales sur-mesure pour les entrepreneurs ambitieux.",
     "links": [
-      {
-        "text": "Accueil",
-        "href": "/"
-      },
-      {
-        "text": "Services",
-        "href": "#services"
-      },
-      {
-        "text": "À propos",
-        "href": "#about"
-      },
-      {
-        "text": "FAQ",
-        "href": "#faq"
-      },
-      {
-        "text": "Contact",
-        "href": "#contact"
-      }
+      { "text": "Accueil", "href": "#hero" },
+      { "text": "Services", "href": "#services" },
+      { "text": "Réalisations", "href": "#portfolio" },
+      { "text": "Contact", "href": "#contact" }
     ],
     "legal": [
-      {
-        "text": "Mentions légales",
-        "href": "/mentions-legales"
-      },
-      {
-        "text": "Politique de confidentialité",
-        "href": "/politique-confidentialite"
-      }
+      { "text": "Mentions légales", "href": "/mentions-legales" },
+      { "text": "Politique de confidentialité", "href": "/politique-confidentialite" }
     ]
   },
   "navigation": [
-    {
-      "text": "Services",
-      "href": "#services"
-    },
-    {
-      "text": "À propos",
-      "href": "#about"
-    },
-    {
-      "text": "FAQ",
-      "href": "#faq"
-    },
-    {
-      "text": "Contact",
-      "href": "#contact"
-    }
+    { "text": "Accueil", "href": "#hero" },
+    { "text": "Services", "href": "#services" },
+    { "text": "Réalisations", "href": "#portfolio" },
+    { "text": "Contact", "href": "#contact" }
   ]
 }
