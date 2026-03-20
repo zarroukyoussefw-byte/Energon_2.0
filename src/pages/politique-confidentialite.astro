@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Politique de confidentialité — ENERGON" description="Politique de confidentialité et RGPD du site ENERGON.">
+  <Header />
+  <main id="main-content" class="legal-page">
+    <div class="container container--narrow">
+      <h1 class="legal-page__title">Politique de confidentialité</h1>
+
+      <section class="legal-section">
+        <h2>Responsable du traitement</h2>
+        <p><strong>Youssef Zarrouk</strong> (ENERGON)</p>
+        <p>SIRET : 93392394800014</p>
+        <p>Contact : <a href="mailto:zarroukyoussef.w@gmail.com">zarroukyoussef.w@gmail.com</a></p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Données collectées</h2>
+        <p>Ce site collecte uniquement les données transmises volontairement via le formulaire de contact : nom, adresse email et message.</p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Finalité du traitement</h2>
+        <p>Les données collectées sont utilisées exclusivement pour répondre à vos demandes de contact et de devis.</p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Durée de conservation</h2>
+        <p>Vos données sont conservées pendant une durée maximale de <strong>3 ans</strong> à compter du dernier contact, puis supprimées.</p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Vos droits</h2>
+        <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :</p>
+        <ul>
+          <li>Droit d'accès à vos données personnelles</li>
+          <li>Droit de rectification</li>
+          <li>Droit de suppression</li>
+          <li>Droit à la portabilité</li>
+          <li>Droit d'opposition au traitement</li>
+        </ul>
+        <p>Pour exercer ces droits, contactez-nous à : <a href="mailto:zarroukyoussef.w@gmail.com">zarroukyoussef.w@gmail.com</a></p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Cookies et tracking</h2>
+        <p>Ce site <strong>n'utilise aucun cookie tiers</strong> et <strong>aucun outil de tracking publicitaire</strong>. Aucune donnée de navigation n'est collectée à des fins commerciales.</p>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page {
+    padding-block: var(--space-24) var(--space-16);
+  }
+
+  .legal-page__title {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-extrabold);
+    margin-bottom: var(--space-12);
+  }
+
+  .legal-section {
+    margin-bottom: var(--space-10);
+  }
+
+  .legal-section h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    margin-bottom: var(--space-4);
+    color: var(--color-accent-light);
+  }
+
+  .legal-section p {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2);
+    line-height: var(--leading-relaxed);
+  }
+
+  .legal-section ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .legal-section li {
+    color: var(--color-text-secondary);
+    padding: var(--space-2) 0;
+    padding-left: var(--space-5);
+    position: relative;
+  }
+
+  .legal-section li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent-light);
+  }
+
+  .legal-section a {
+    color: var(--color-accent-light);
+  }
+
+  .legal-section a:hover {
+    color: var(--color-accent);
+  }
+</style>

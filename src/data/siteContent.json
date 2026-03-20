@@ -9,14 +9,14 @@
       "phone": "06.99.22.64.99",
       "email": "zarroukyoussef.w@gmail.com",
       "address": {
-        "street": "Lavaur",
-        "city": "Lavaur",
-        "postalCode": "81500",
+        "street": "Graulhet",
+        "city": "Graulhet",
+        "postalCode": "81300",
         "country": "FR"
       }
     },
     "socials": {
-      "linkedin": "https://linkedin.com/in/zarroukyoussef",
+      "linkedin": "https://www.linkedin.com/in/youssef-zarrouk-073391a6/",
       "instagram": "",
       "twitter": ""
     }
@@ -34,7 +34,7 @@
       "href": "#portfolio"
     },
     "stats": [
-      { "value": "50+", "label": "Projets livrés" },
+      { "value": "30+", "label": "Projets livrés" },
       { "value": "98%", "label": "Clients satisfaits" },
       { "value": "<24h", "label": "Temps de réponse" }
     ],
@@ -129,11 +129,11 @@
   },
   "about": {
     "headline": "Un expert, pas une agence.",
-    "description": "Je suis Youssef, fondateur d'ENERGON. Développeur et consultant digital basé à Lavaur, en Occitanie; j'accompagne les entrepreneurs, artisans et PME qui veulent des résultats concrets. Pas de jargon, pas de réunions inutiles : un interlocuteur unique, des livrables rapides et un objectif clair — faire décoller votre business en ligne.",
+    "description": "Je suis Youssef, fondateur d'ENERGON. Développeur et consultant digital basé à Graulhet, en Occitanie; j'accompagne les entrepreneurs, artisans et PME qui veulent des résultats concrets. Pas de jargon, pas de réunions inutiles : un interlocuteur unique, des livrables rapides et un objectif clair — faire décoller votre business en ligne.",
     "stats": [
-      { "value": "50+", "label": "Projets livrés" },
+      { "value": "30+", "label": "Projets livrés" },
       { "value": "98%", "label": "Clients satisfaits" },
-      { "value": "5", "label": "Années d'expertise" },
+      { "value": "3", "label": "Années d'expertise" },
       { "value": "<24h", "label": "Temps de réponse" }
     ],
     "image": {

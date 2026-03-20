@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Mentions légales — ENERGON" description="Mentions légales du site ENERGON.">
+  <Header />
+  <main id="main-content" class="legal-page">
+    <div class="container container--narrow">
+      <h1 class="legal-page__title">Mentions légales</h1>
+
+      <section class="legal-section">
+        <h2>Éditeur du site</h2>
+        <p><strong>Youssef Zarrouk</strong>, auto-entrepreneur</p>
+        <p>SIRET : 93392394800014</p>
+        <p>Adresse : Graulhet, 81300 Tarn, France</p>
+        <p>Email : <a href="mailto:zarroukyoussef.w@gmail.com">zarroukyoussef.w@gmail.com</a></p>
+        <p>Téléphone : <a href="tel:+33699226499">06.99.22.64.99</a></p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Directeur de publication</h2>
+        <p>Youssef Zarrouk</p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Hébergeur</h2>
+        <p><strong>Hostinger International Ltd.</strong></p>
+        <p>61 Lordou Vironos Street, 6023 Larnaca, Chypre</p>
+        <p><a href="https://www.hostinger.fr" target="_blank" rel="noopener noreferrer">https://www.hostinger.fr</a></p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Propriété intellectuelle</h2>
+        <p>L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes) est la propriété exclusive d'ENERGON, sauf mention contraire. Toute reproduction, même partielle, est interdite sans autorisation préalable.</p>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page {
+    padding-block: var(--space-24) var(--space-16);
+  }
+
+  .legal-page__title {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-extrabold);
+    margin-bottom: var(--space-12);
+  }
+
+  .legal-section {
+    margin-bottom: var(--space-10);
+  }
+
+  .legal-section h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    margin-bottom: var(--space-4);
+    color: var(--color-accent-light);
+  }
+
+  .legal-section p {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2);
+    line-height: var(--leading-relaxed);
+  }
+
+  .legal-section a {
+    color: var(--color-accent-light);
+  }
+
+  .legal-section a:hover {
+    color: var(--color-accent);
+  }
+</style>
