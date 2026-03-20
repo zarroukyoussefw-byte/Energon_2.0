@@ -87,6 +87,7 @@
         "metric": "+158%",
         "metricLabel": "conversions",
         "category": "Site Web",
+        "accentColor": "#a855f7",
         "title": "E-commerce Mode",
         "description": "Refonte d'une boutique Shopify — taux de conversion passé de 1.2% à 3.1% en 4 mois."
       },
@@ -94,6 +95,7 @@
         "metric": "−8h",
         "metricLabel": "admin/sem.",
         "category": "Application Web",
+        "accentColor": "#06b6d4",
         "title": "App de Gestion",
         "description": "Dashboard interne pour une PME de 45 employés. Réduction du temps admin de 8h/semaine."
       },
@@ -101,6 +103,7 @@
         "metric": "40%",
         "metricLabel": "tickets auto",
         "category": "Automatisation IA",
+        "accentColor": "#7c3aed",
         "title": "Bot Support Client",
         "description": "Chatbot pour un site e-commerce traitant 40% des demandes sans intervention humaine."
       },
@@ -108,6 +111,7 @@
         "metric": "380",
         "metricLabel": "leads / 3 sem.",
         "category": "Landing Page",
+        "accentColor": "#a855f7",
         "title": "Landing Page Formation",
         "description": "Page d'inscription pour un formateur indépendant — 380 leads qualifiés en 3 semaines."
       },
@@ -115,6 +119,7 @@
         "metric": "12",
         "metricLabel": "clients actifs",
         "category": "Service IA",
+        "accentColor": "#a855f7",
         "title": "Veille Concurrentielle",
         "description": "Outil automatisé de monitoring prix et offres pour une agence marketing locale."
       },
@@ -122,6 +127,7 @@
         "metric": "35",
         "metricLabel": "devis/mois",
         "category": "Site Web",
+        "accentColor": "#a855f7",
         "title": "Site Artisan Plombier",
         "description": "Site vitrine SEO local — passage de 0 à 35 demandes de devis par mois en 6 mois."
       }

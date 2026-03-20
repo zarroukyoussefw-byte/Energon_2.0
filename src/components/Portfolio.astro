@@ -3,15 +3,6 @@ import siteContent from '../data/siteContent.json';
 const { portfolio } = siteContent;
 
 const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category))];
-
-/* Accent color per category */
-const accentMap: Record<string, string> = {
-  'Site Web': '#a855f7',
-  'Landing Page': '#a855f7',
-  'Application Web': '#06b6d4',
-  'Automatisation IA': '#7c3aed',
-  'Service IA': '#a855f7',
-};
 ---
 
 <section class="portfolio section" id="portfolio" aria-labelledby="portfolio-heading">
@@ -39,7 +30,7 @@ const accentMap: Record<string, string> = {
 
     <div class="portfolio__grid" role="list">
       {portfolio.items.map((item, idx) => {
-        const accent = accentMap[item.category] || '#a855f7';
+        const accent = item.accentColor || '#a855f7';
         return (
           <article
             class="portfolio__card"
@@ -48,6 +39,7 @@ const accentMap: Record<string, string> = {
             style={`--card-accent: ${accent}; --card-delay: ${idx * 0.08}s;`}
           >
             <div class="portfolio__metric-zone">
+              <div class="portfolio__orb" aria-hidden="true"></div>
               <span class="portfolio__badge">{item.category}</span>
               <div class="portfolio__metric">
                 <span class="portfolio__metric-value">{item.metric}</span>
@@ -170,6 +162,14 @@ const accentMap: Record<string, string> = {
     transform: translateY(-3px);
   }
 
+  .portfolio__card:hover .portfolio__metric-value {
+    opacity: 1;
+  }
+
+  .portfolio__card:hover .portfolio__metric-label {
+    opacity: 0.7;
+  }
+
   @keyframes cardIn {
     from {
       opacity: 0;
@@ -189,7 +189,24 @@ const accentMap: Record<string, string> = {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: linear-gradient(135deg, color-mix(in srgb, var(--card-accent) 9%, transparent), var(--color-bg-elevated));
+    overflow: hidden;
+    background:
+      radial-gradient(var(--card-accent, #a855f7) 1px, transparent 1px),
+      linear-gradient(135deg, color-mix(in srgb, var(--card-accent) 9%, transparent) 0%, #0e0e18 100%);
+    background-size: 16px 16px, 100% 100%;
+  }
+
+  /* Orb glow */
+  .portfolio__orb {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--card-accent) 12%, transparent) 0%, transparent 70%);
+    filter: blur(20px);
+    pointer-events: none;
   }
 
   .portfolio__badge {
@@ -207,6 +224,7 @@ const accentMap: Record<string, string> = {
     border-radius: 4px;
     padding: 3px 7px;
     line-height: 1;
+    z-index: 1;
   }
 
   .portfolio__metric {
@@ -214,6 +232,7 @@ const accentMap: Record<string, string> = {
     flex-direction: column;
     align-items: center;
     gap: 2px;
+    z-index: 1;
   }
 
   .portfolio__metric-value {
@@ -222,13 +241,17 @@ const accentMap: Record<string, string> = {
     font-weight: var(--weight-bold);
     color: var(--card-accent);
     line-height: 1;
+    opacity: 0.7;
+    transition: opacity var(--transition-base);
   }
 
   .portfolio__metric-label {
     font-family: var(--font-sans);
-    font-size: 11px;
+    font-size: 12px;
     color: var(--color-text-muted);
     font-weight: var(--weight-medium);
+    opacity: 0.5;
+    transition: opacity var(--transition-base);
   }
 
   /* Info zone (bottom) */
