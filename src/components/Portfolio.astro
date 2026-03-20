@@ -36,7 +36,7 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
             class="portfolio__card"
             data-category={item.category}
             role="listitem"
-            style={`--card-accent: ${accent}; --card-delay: ${idx * 0.08}s;`}
+            style={`--card-accent: ${accent}; --card-delay: ${idx * 0.08}s; --dots-color: ${accent}0d; --orb-color: ${accent}14; --zone-bg: ${accent}18;`}
           >
             <div class="portfolio__metric-zone">
               <div class="portfolio__orb" aria-hidden="true"></div>
@@ -191,8 +191,8 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
     flex-direction: column;
     overflow: hidden;
     background:
-      radial-gradient(var(--card-accent, #a855f7) 1px, transparent 1px),
-      linear-gradient(135deg, color-mix(in srgb, var(--card-accent) 9%, transparent) 0%, #0e0e18 100%);
+      radial-gradient(var(--dots-color) 1px, transparent 1px),
+      linear-gradient(135deg, var(--zone-bg) 0%, #0e0e18 100%);
     background-size: 16px 16px, 100% 100%;
   }
 
@@ -204,7 +204,7 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
     width: 160px;
     height: 160px;
     border-radius: 50%;
-    background: radial-gradient(circle, color-mix(in srgb, var(--card-accent) 12%, transparent) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--orb-color) 0%, transparent 70%);
     filter: blur(20px);
     pointer-events: none;
   }
