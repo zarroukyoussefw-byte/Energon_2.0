@@ -84,52 +84,52 @@
     "headline": "Des résultats, pas des promesses",
     "items": [
       {
-        "metric": "+158%",
+        "metric": "+47%",
         "metricLabel": "conversions",
         "category": "Site Web",
         "accentColor": "#a855f7",
         "title": "E-commerce Mode",
-        "description": "Refonte d'une boutique Shopify — taux de conversion passé de 1.2% à 3.1% en 4 mois."
+        "description": "Refonte d'une boutique en ligne locale — taux de conversion passé de 1.8% à 2.7% en 4 mois."
       },
       {
-        "metric": "−8h",
+        "metric": "−5h",
         "metricLabel": "admin/sem.",
         "category": "Application Web",
         "accentColor": "#06b6d4",
         "title": "App de Gestion",
-        "description": "Dashboard interne pour une PME de 45 employés. Réduction du temps admin de 8h/semaine."
+        "description": "Dashboard sur-mesure pour un artisan avec 3 employés. Réduction du temps administratif de 5h par semaine."
       },
       {
-        "metric": "40%",
+        "metric": "35%",
         "metricLabel": "tickets auto",
         "category": "Automatisation IA",
         "accentColor": "#7c3aed",
         "title": "Bot Support Client",
-        "description": "Chatbot pour un site e-commerce traitant 40% des demandes sans intervention humaine."
+        "description": "Chatbot pour un site e-commerce traitant 35% des demandes courantes sans intervention humaine."
       },
       {
-        "metric": "380",
+        "metric": "74",
         "metricLabel": "leads / 3 sem.",
         "category": "Landing Page",
         "accentColor": "#a855f7",
         "title": "Landing Page Formation",
-        "description": "Page d'inscription pour un formateur indépendant — 380 leads qualifiés en 3 semaines."
+        "description": "Page d'inscription pour un formateur indépendant — 74 leads qualifiés générés en 3 semaines."
       },
       {
-        "metric": "12",
+        "metric": "5",
         "metricLabel": "clients actifs",
         "category": "Service IA",
         "accentColor": "#a855f7",
         "title": "Veille Concurrentielle",
-        "description": "Outil automatisé de monitoring prix et offres pour une agence marketing locale."
+        "description": "Outil automatisé de monitoring prix et offres, déployé pour 5 clients d'une agence marketing locale."
       },
       {
-        "metric": "35",
+        "metric": "18",
         "metricLabel": "devis/mois",
         "category": "Site Web",
         "accentColor": "#a855f7",
         "title": "Site Artisan Plombier",
-        "description": "Site vitrine SEO local — passage de 0 à 35 demandes de devis par mois en 6 mois."
+        "description": "Site vitrine SEO local — passage de 0 à 18 demandes de devis par mois en 6 mois."
       }
     ]
   },
