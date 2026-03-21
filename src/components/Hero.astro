@@ -46,22 +46,6 @@ const { hero } = siteContent;
         </div>
       )}
     </div>
-
-    <div class="hero__image animate-fade-in-up animate-delay-3">
-      <picture>
-        <source srcset={hero.image.src} type="image/avif" />
-        <source srcset={hero.image.fallback} type="image/webp" />
-        <img
-          src={hero.image.fallback}
-          alt={hero.image.alt}
-          width={hero.image.width}
-          height={hero.image.height}
-          fetchpriority="high"
-          loading="eager"
-          decoding="async"
-        />
-      </picture>
-    </div>
   </div>
 </section>
 
@@ -108,6 +92,10 @@ const { hero } = siteContent;
     position: relative;
     z-index: 1;
     display: grid;
+    grid-template-columns: 1fr;
+    max-width: 800px;
+    margin-inline: auto;
+    text-align: center;
     gap: var(--space-12);
     align-items: center;
   }
@@ -152,8 +140,9 @@ const { hero } = siteContent;
     font-size: var(--text-lg);
     color: var(--color-text-secondary);
     line-height: var(--leading-relaxed);
-    max-width: 540px;
+    max-width: 600px;
     margin-top: var(--space-6);
+    margin-inline: auto;
   }
 
   .hero__ctas {
@@ -161,6 +150,7 @@ const { hero } = siteContent;
     flex-wrap: wrap;
     gap: var(--space-4);
     margin-top: var(--space-8);
+    justify-content: center;
   }
 
   /* Stats bar */
@@ -170,6 +160,7 @@ const { hero } = siteContent;
     margin-top: var(--space-10);
     padding-top: var(--space-8);
     border-top: 1px solid var(--color-border);
+    justify-content: center;
   }
 
   .hero__stat {
@@ -193,34 +184,9 @@ const { hero } = siteContent;
     font-weight: var(--weight-medium);
   }
 
-  .hero__image {
-    position: relative;
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg), var(--shadow-glow);
-    border: 1px solid var(--color-border);
-  }
-
-  .hero__image img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-
   @media (min-width: 768px) {
-    .hero__content {
-      grid-template-columns: 1fr 1fr;
-    }
-
     .hero {
       padding-block: var(--space-32) var(--space-24);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .hero__content {
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: var(--space-16);
     }
   }
 </style>

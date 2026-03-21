@@ -6,25 +6,8 @@ const { about } = siteContent;
 <section class="about section" id="about" aria-labelledby="about-heading">
   <div class="container">
     <div class="about__grid">
-      <div class="about__image-wrapper">
-        <picture>
-          <source srcset={about.image.src} type="image/avif" />
-          <source srcset={about.image.fallback} type="image/webp" />
-          <img
-            src={about.image.fallback}
-            alt={about.image.alt}
-            width={about.image.width}
-            height={about.image.height}
-            loading="lazy"
-            decoding="async"
-            class="about__image"
-          />
-        </picture>
-        <div class="about__image-accent" aria-hidden="true"></div>
-      </div>
-
       <div class="about__content">
-        <h2 id="about-heading" class="section__title" style="text-align: left;">
+        <h2 id="about-heading" class="section__title">
           <span class="gradient-text">{about.headline}</span>
         </h2>
         <p class="about__description">{about.description}</p>
@@ -45,31 +28,11 @@ const { about } = siteContent;
 <style>
   .about__grid {
     display: grid;
+    grid-template-columns: 1fr;
+    max-width: 800px;
+    margin-inline: auto;
     gap: var(--space-12);
     align-items: center;
-  }
-
-  .about__image-wrapper {
-    position: relative;
-  }
-
-  .about__image {
-    width: 100%;
-    height: auto;
-    border-radius: var(--radius-xl);
-    border: 1px solid var(--color-border);
-  }
-
-  .about__image-accent {
-    position: absolute;
-    bottom: -12px;
-    right: -12px;
-    width: 60%;
-    height: 60%;
-    background: var(--gradient-hero);
-    border-radius: var(--radius-xl);
-    z-index: -1;
-    opacity: 0.15;
   }
 
   .about__description {
@@ -107,11 +70,6 @@ const { about } = siteContent;
   }
 
   @media (min-width: 768px) {
-    .about__grid {
-      grid-template-columns: 1fr 1.2fr;
-      gap: var(--space-16);
-    }
-
     .about__stats {
       grid-template-columns: repeat(4, 1fr);
     }
