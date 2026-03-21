@@ -276,8 +276,8 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
 </style>
 
 <script>
-  const filters = document.querySelectorAll('.portfolio__filter');
-  const cards = document.querySelectorAll('.portfolio__card');
+  const filters = document.querySelectorAll<HTMLElement>('.portfolio__filter');
+  const cards = document.querySelectorAll<HTMLElement>('.portfolio__card');
 
   filters.forEach(filter => {
     filter.addEventListener('click', () => {
