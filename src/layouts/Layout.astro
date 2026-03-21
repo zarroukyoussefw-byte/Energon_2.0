@@ -88,7 +88,10 @@ const localBusinessSchema = {
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <!-- Fonts loaded via CSS @import in global.css -->
+  <!-- Google Fonts (preconnect + stylesheet pour éviter le blocage de rendu) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" />
 
   <!-- Structured Data -->
   <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
