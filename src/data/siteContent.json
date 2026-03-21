@@ -156,19 +156,19 @@
     "items": [
       {
         "question": "Combien de temps faut-il pour créer un site vitrine ?",
-        "answer": "Un site vitrine professionnel est livré en 2 à 4 semaines. Ce délai inclut la phase de conception, le développement, les tests de performance et la mise en ligne. Les projets plus complexes avec des fonctionnalités sur-mesure peuvent prendre 6 à 8 semaines."
+        "answer": "Un site vitrine professionnel est livré en 48 à 72 heures. Ce délai inclut la phase de conception, le développement, les tests de performance et la mise en ligne. Les projets plus complexes avec des fonctionnalités sur-mesure peuvent voir le délai se rallonger en fonction de la complexité et des solutions à implémenter."
       },
       {
         "question": "Quelles technologies utilisez-vous ?",
-        "answer": "J'utilise les technologies les plus performantes de 2026 : Astro pour le rendu statique ultra-rapide, du CSS moderne avec des animations fluides, et une architecture optimisée pour le SEO et l'accessibilité. Chaque choix technique vise un score Lighthouse de 95+."
+        "answer": "J'utilise les technologies et bonnes pratiques recommandées par Google en 2026 : des sites rapides, accessibles et optimisés pour le référencement naturel dès la conception. Résultat : des scores Lighthouse 90+ et une expérience utilisateur irréprochable sur tous les appareils."
       },
       {
         "question": "Mon site sera-t-il optimisé pour le référencement ?",
-        "answer": "Absolument. Le SEO est intégré dès la conception : données structurées JSON-LD, balises sémantiques HTML5, temps de chargement minimal, format BLUF pour le contenu, et compatibilité avec les moteurs de recherche IA (GEO). Votre site est conçu pour dominer les résultats de recherche."
+        "answer": "Absolument. Le SEO est intégré dès la conception : structure de contenu claire, temps de chargement minimal, et compatibilité avec les moteurs de recherche traditionnels comme Google mais aussi les IA comme ChatGPT, Perplexity ou Google Gemini. Votre site est conçu pour dominer les résultats de recherche."
       },
       {
         "question": "Proposez-vous un accompagnement après la mise en ligne ?",
-        "answer": "Oui, j'assure la maintenance, les mises à jour de sécurité et l'optimisation continue de votre site. Mes forfaits incluent le suivi des performances, les sauvegardes automatiques et un support réactif par email et téléphone."
+        "answer": "Tout dépend de vos besoins. Maintenance, mises à jour de sécurité, suivi des performances, sauvegardes automatiques ou simple support ponctuel — rien n'est figé. On définit ensemble ce qui correspond à votre niveau et à vos objectifs."
       },
       {
         "question": "Comment se passe la collaboration ?",
