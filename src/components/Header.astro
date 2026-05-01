@@ -149,11 +149,13 @@ const { navigation, site } = siteContent;
       left: 0;
       right: 0;
       bottom: 0;
-      background: var(--color-bg);
+      background: rgba(9, 9, 15, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       padding: var(--space-8) var(--space-5);
       transform: translateX(100%);
       transition: transform var(--transition-base);
-      z-index: var(--z-overlay);
+      z-index: 50;
     }
 
     .header__nav.is-open {
@@ -169,6 +171,7 @@ const { navigation, site } = siteContent;
       font-size: var(--text-xl);
       padding: var(--space-4);
       border-radius: var(--radius-md);
+      color: var(--color-text);
     }
 
     .header__hamburger {
