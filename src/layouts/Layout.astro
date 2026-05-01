@@ -16,7 +16,7 @@ const canonicalURL = new URL(Astro.url.pathname, siteContent.site.url);
 
 const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "ProfessionalService"],
   "name": siteContent.site.name,
   "url": siteContent.site.url,
   "logo": `${siteContent.site.url}/images/logo.svg`,
@@ -32,7 +32,7 @@ const organizationSchema = {
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "ProfessionalService",
   "name": siteContent.site.name,
   "description": siteContent.site.description,
   "url": siteContent.site.url,
@@ -47,8 +47,8 @@ const localBusinessSchema = {
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": "48.8606",
-    "longitude": "2.3376"
+    "latitude": "43.7598",
+    "longitude": "2.0004"
   },
   "openingHoursSpecification": [
     {
@@ -87,6 +87,9 @@ const localBusinessSchema = {
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Google Search Console — à remplacer par le vrai code lors de la vérification -->
+  <meta name="google-site-verification" content="PLACEHOLDER_GSC" />
 
   <!-- Google Fonts (preconnect + stylesheet pour éviter le blocage de rendu) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
