@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+  <defs>
+    <linearGradient id="prune" x1="18" y1="0" x2="102" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1a0535"/>
+      <stop offset="50%" stop-color="#3d0f6e"/>
+      <stop offset="100%" stop-color="#5b1fa8"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="60" y2="75" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#c084fc" stop-opacity="0.38"/>
+      <stop offset="45%" stop-color="#a855f7" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="border" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#c084fc" stop-opacity="0.75"/>
+      <stop offset="50%" stop-color="#7c3aed" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#4c1d95" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+  <!-- Halo -->
+  <rect x="3" y="3" width="114" height="114" rx="26" fill="#4c1d95" opacity="0.35"/>
+  <!-- Fond prune -->
+  <rect x="5" y="5" width="110" height="110" rx="24" fill="url(#prune)"/>
+  <!-- Reflet -->
+  <rect x="5" y="5" width="110" height="110" rx="24" fill="url(#shine)"/>
+  <!-- Bordure -->
+  <rect x="5.75" y="5.75" width="108.5" height="108.5" rx="23.25" fill="none" stroke="url(#border)" stroke-width="1.25"/>
+  <!-- ENERGON centré — textLength contraint à 80px dans 110px de carré utile -->
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-family="system-ui,-apple-system,sans-serif"
+    font-weight="800"
+    font-size="16"
+    fill="white"
+    opacity="0.95"
+    textLength="80"
+    lengthAdjust="spacingAndGlyphs"
+  >ENERGON</text>
+</svg>
