@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ENERGON — Espace de gestion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Variables ── */
+    :root {
+      --bg:          #09090f;
+      --bg-1:        #0e0e18;
+      --bg-2:        #141422;
+      --border:      rgba(168, 85, 247, 0.12);
+      --border-h:    rgba(168, 85, 247, 0.28);
+      --accent:      #7c3aed;
+      --accent-l:    #a855f7;
+      --accent-glow: rgba(168, 85, 247, 0.18);
+      --text:        #e4e2f0;
+      --text-2:      #9a97b0;
+      --text-3:      #6a677e;
+      --danger:      #ef4444;
+      --danger-glow: rgba(239, 68, 68, 0.15);
+      --success:     #22c55e;
+      --ff-sans:     'Sora', system-ui, sans-serif;
+      --ff-mono:     'JetBrains Mono', monospace;
+      --r:           10px;
+      --r-lg:        14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent-l); text-decoration: none; }
+    a:hover { color: var(--accent); }
+    button { font-family: var(--ff-sans); cursor: pointer; border: none; }
+
+    /* ── Utilities ── */
+    .hidden { display: none !important; }
+
+    /* ── Grid background ── */
+    .grid-bg {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(168,85,247,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168,85,247,.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+    }
+
+    /* ═══════════════════════
+       LOGIN SCREEN
+    ═══════════════════════ */
+    #login-screen {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+      padding: 24px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 40px;
+      box-shadow: 0 0 60px rgba(124,58,237,.1), 0 8px 32px rgba(0,0,0,.5);
+      animation: fadeUp .5s ease both;
+    }
+
+    .login-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .login-logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, #3d0f6e, #5b1fa8);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; color: #fff;
+      letter-spacing: .5px;
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    .login-logo-name {
+      font-size: 16px; font-weight: 700; color: var(--text);
+      letter-spacing: .5px;
+    }
+
+    .login-card h1 {
+      font-size: 22px; font-weight: 700; color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .login-card p {
+      font-size: 13px; color: var(--text-2); margin-bottom: 28px;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+
+    .field label {
+      font-size: 12px; font-weight: 600; color: var(--text-2);
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+
+    .field input {
+      width: 100%; padding: 10px 14px;
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--r); color: var(--text);
+      font-family: var(--ff-sans); font-size: 14px;
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+
+    .field input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .field input::placeholder { color: var(--text-3); }
+
+    #login-error {
+      font-size: 12px; color: var(--danger);
+      background: var(--danger-glow);
+      border: 1px solid rgba(239,68,68,.2);
+      border-radius: var(--r); padding: 8px 12px;
+      margin-bottom: 12px; display: none;
+    }
+
+    #login-error.visible { display: block; }
+
+    .btn-primary {
+      width: 100%; padding: 11px;
+      background: var(--accent);
+      color: #fff; font-size: 14px; font-weight: 600;
+      border-radius: var(--r);
+      transition: background .15s, transform .15s, box-shadow .15s;
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-l);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px var(--accent-glow);
+    }
+
+    .btn-primary:disabled {
+      opacity: .55; cursor: not-allowed; transform: none;
+    }
+
+    /* ═══════════════════════
+       DASHBOARD SCREEN
+    ═══════════════════════ */
+    #dashboard-screen {
+      position: relative; z-index: 1;
+      min-height: 100dvh;
+      display: flex; flex-direction: column;
+      animation: fadeIn .4s ease;
+    }
+
+    /* Header */
+    .dash-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(9,9,15,.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+
+    .dash-header-inner {
+      max-width: 1100px; margin: 0 auto;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .dash-brand {
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .dash-brand-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #3d0f6e, #5b1fa8);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; color: #fff; letter-spacing: .5px;
+    }
+
+    .dash-brand-text {
+      font-size: 14px; font-weight: 600; color: var(--text);
+    }
+
+    .dash-brand-sep {
+      color: var(--text-3); margin: 0 4px;
+    }
+
+    .dash-brand-sub {
+      font-size: 13px; color: var(--text-2);
+    }
+
+    .dash-header-right {
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    .dash-user-email {
+      font-family: var(--ff-mono);
+      font-size: 11px; color: var(--text-3);
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 6px; padding: 4px 10px;
+      display: none;
+    }
+
+    @media (min-width: 600px) { .dash-user-email { display: block; } }
+
+    .btn-logout {
+      padding: 6px 14px;
+      font-size: 12px; font-weight: 600; color: var(--text-2);
+      background: transparent; border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all .15s;
+    }
+
+    .btn-logout:hover {
+      border-color: var(--border-h); color: var(--text);
+    }
+
+    /* Main */
+    .dash-main {
+      max-width: 1100px; margin: 0 auto;
+      padding: 32px 24px;
+      flex: 1;
+    }
+
+    /* Page header */
+    .page-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 24px; flex-wrap: wrap; gap: 12px;
+    }
+
+    .page-title-group h2 {
+      font-size: 22px; font-weight: 700; color: var(--text);
+    }
+
+    .page-title-group p {
+      font-size: 12px; color: var(--text-3); margin-top: 2px;
+    }
+
+    .btn-refresh {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 16px; font-size: 12px; font-weight: 600;
+      color: var(--text-2); background: var(--bg-1);
+      border: 1px solid var(--border); border-radius: 8px;
+      transition: all .15s;
+    }
+
+    .btn-refresh:hover {
+      border-color: var(--border-h); color: var(--text);
+    }
+
+    /* States */
+    .state-box {
+      padding: 48px 24px;
+      background: var(--bg-1); border: 1px solid var(--border);
+      border-radius: var(--r-lg); text-align: center;
+    }
+
+    .state-box .icon {
+      font-size: 36px; margin-bottom: 12px;
+    }
+
+    .state-box p {
+      font-size: 14px; color: var(--text-2);
+    }
+
+    .state-box.is-error .icon { font-size: 28px; }
+    .state-box.is-error p { color: var(--danger); }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex; gap: 12px; margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 14px; font-size: 12px; font-weight: 600;
+      background: var(--bg-1); border: 1px solid var(--border);
+      border-radius: 999px; color: var(--text-2);
+    }
+
+    .stat-pill .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent-l);
+    }
+
+    /* Table wrapper */
+    .table-wrapper {
+      overflow-x: auto;
+      border: 1px solid var(--border); border-radius: var(--r-lg);
+      background: var(--bg-1);
+    }
+
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    thead {
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    thead th {
+      padding: 11px 16px;
+      text-align: left;
+      font-size: 11px; font-weight: 600;
+      color: var(--text-3); text-transform: uppercase;
+      letter-spacing: .06em; white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .12s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+
+    tbody tr:hover { background: rgba(168,85,247,.04); }
+
+    tbody td {
+      padding: 14px 16px; vertical-align: top;
+      color: var(--text);
+    }
+
+    .td-name { font-weight: 600; white-space: nowrap; }
+
+    .td-email a, .td-phone a {
+      color: var(--accent-l); font-size: 12px;
+      font-family: var(--ff-mono);
+    }
+
+    .td-email a:hover, .td-phone a:hover { color: var(--accent); }
+
+    .td-message {
+      max-width: 260px;
+    }
+
+    .td-message span {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      color: var(--text-2); line-height: 1.5;
+    }
+
+    .td-date {
+      white-space: nowrap;
+      font-family: var(--ff-mono);
+      font-size: 11px; color: var(--text-3);
+    }
+
+    .td-actions { text-align: right; white-space: nowrap; padding-right: 12px; }
+
+    .btn-delete {
+      padding: 5px 10px;
+      font-size: 12px; font-weight: 500;
+      color: var(--text-3); background: transparent;
+      border: 1px solid transparent; border-radius: 6px;
+      transition: all .15s;
+    }
+
+    .btn-delete:hover {
+      color: var(--danger);
+      border-color: rgba(239,68,68,.3);
+      background: var(--danger-glow);
+    }
+
+    /* ═══════════════════════
+       MODAL
+    ═══════════════════════ */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(0,0,0,.7);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      animation: fadeIn .15s ease;
+    }
+
+    .modal-box {
+      background: var(--bg-1);
+      border: 1px solid var(--border-h);
+      border-radius: var(--r-lg);
+      padding: 28px 32px;
+      width: 100%; max-width: 360px;
+      box-shadow: 0 8px 40px rgba(0,0,0,.6);
+      animation: fadeUp .2s ease;
+    }
+
+    .modal-box h3 {
+      font-size: 17px; font-weight: 700; margin-bottom: 8px;
+    }
+
+    .modal-box p {
+      font-size: 13px; color: var(--text-2); margin-bottom: 24px;
+    }
+
+    .modal-actions {
+      display: flex; gap: 10px; justify-content: flex-end;
+    }
+
+    .btn-cancel {
+      padding: 9px 18px; font-size: 13px; font-weight: 600;
+      color: var(--text-2); background: var(--bg-2);
+      border: 1px solid var(--border); border-radius: var(--r);
+      transition: all .15s;
+    }
+
+    .btn-cancel:hover { border-color: var(--border-h); color: var(--text); }
+
+    .btn-confirm-delete {
+      padding: 9px 18px; font-size: 13px; font-weight: 600;
+      color: #fff; background: var(--danger);
+      border-radius: var(--r);
+      transition: all .15s;
+      box-shadow: 0 4px 12px var(--danger-glow);
+    }
+
+    .btn-confirm-delete:hover { background: #dc2626; transform: translateY(-1px); }
+    .btn-confirm-delete:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+    /* ── Animations ── */
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Spinner ── */
+    .spinner {
+      display: inline-block;
+      width: 16px; height: 16px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent-l);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<!-- Grid background -->
+<div class="grid-bg" aria-hidden="true"></div>
+
+<!-- ════════════════════════
+     LOGIN SCREEN
+════════════════════════ -->
+<div id="login-screen">
+  <div class="login-card">
+
+    <div class="login-logo">
+      <div class="login-logo-icon">E</div>
+      <span class="login-logo-name">ENERGON</span>
+    </div>
+
+    <h1>Espace de gestion</h1>
+    <p>Connectez-vous pour accéder à vos données.</p>
+
+    <form id="login-form" novalidate>
+      <div class="field">
+        <label for="inp-email">Email</label>
+        <input type="email" id="inp-email" autocomplete="email" placeholder="votre@email.fr" required />
+      </div>
+      <div class="field">
+        <label for="inp-password">Mot de passe</label>
+        <input type="password" id="inp-password" autocomplete="current-password" placeholder="••••••••" required />
+      </div>
+
+      <div id="login-error"></div>
+
+      <button type="submit" class="btn-primary" id="login-btn">
+        Se connecter
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<!-- ════════════════════════
+     DASHBOARD SCREEN
+════════════════════════ -->
+<div id="dashboard-screen" class="hidden">
+
+  <header class="dash-header">
+    <div class="dash-header-inner">
+      <div class="dash-brand">
+        <div class="dash-brand-icon">E</div>
+        <span class="dash-brand-text">ENERGON</span>
+        <span class="dash-brand-sep">·</span>
+        <span class="dash-brand-sub">Espace de gestion</span>
+      </div>
+      <div class="dash-header-right">
+        <span class="dash-user-email" id="user-email"></span>
+        <button class="btn-logout" id="logout-btn">Déconnexion</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dash-main">
+    <div class="page-header">
+      <div class="page-title-group">
+        <h2>Messages reçus</h2>
+        <p>Formulaire de contact — energon.cloud</p>
+      </div>
+      <button class="btn-refresh" id="refresh-btn">
+        <span id="refresh-icon">↻</span>
+        Actualiser
+      </button>
+    </div>
+
+    <div id="contacts-container">
+      <!-- Contenu chargé dynamiquement -->
+    </div>
+  </main>
+
+</div>
+
+<!-- ════════════════════════
+     MODAL SUPPRESSION
+════════════════════════ -->
+<div id="modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <h3 id="modal-title">Supprimer ce message ?</h3>
+    <p>Cette action est définitive et irréversible.</p>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="modal-cancel">Annuler</button>
+      <button class="btn-confirm-delete" id="modal-confirm">Supprimer</button>
+    </div>
+  </div>
+</div>
+
+<!-- PocketBase JS SDK (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/pocketbase/dist/pocketbase.umd.js"></script>
+
+<script>
+  /* ─────────────────────────────────────────────
+     CONFIG — modifie uniquement cette ligne
+     si tu veux utiliser sur un autre projet
+  ───────────────────────────────────────────── */
+  const PB_URL = 'https://admin.energon.cloud';
+
+  /* ─── Init SDK ─── */
+  const pb = new PocketBase(PB_URL);
+
+  /* ─── DOM refs ─── */
+  const loginScreen     = document.getElementById('login-screen');
+  const dashScreen      = document.getElementById('dashboard-screen');
+  const loginForm       = document.getElementById('login-form');
+  const loginError      = document.getElementById('login-error');
+  const loginBtn        = document.getElementById('login-btn');
+  const logoutBtn       = document.getElementById('logout-btn');
+  const refreshBtn      = document.getElementById('refresh-btn');
+  const refreshIcon     = document.getElementById('refresh-icon');
+  const userEmailEl     = document.getElementById('user-email');
+  const container       = document.getElementById('contacts-container');
+  const modal           = document.getElementById('modal');
+  const modalCancel     = document.getElementById('modal-cancel');
+  const modalConfirm    = document.getElementById('modal-confirm');
+
+  let deleteId = null;
+
+  /* ─────────────────────────────────────────────
+     INIT : vérifie si déjà connecté
+  ───────────────────────────────────────────── */
+  pb.authStore.isValid ? showDashboard() : showLogin();
+
+  /* ─────────────────────────────────────────────
+     LOGIN
+  ───────────────────────────────────────────── */
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    hideError();
+    loginBtn.disabled = true;
+    loginBtn.innerHTML = '<span class="spinner"></span>';
+
+    const email    = document.getElementById('inp-email').value.trim();
+    const password = document.getElementById('inp-password').value;
+
+    try {
+      await pb.collection('users').authWithPassword(email, password);
+      showDashboard();
+    } catch {
+      showError('Email ou mot de passe incorrect.');
+      loginBtn.disabled = false;
+      loginBtn.textContent = 'Se connecter';
+    }
+  });
+
+  /* ─────────────────────────────────────────────
+     LOGOUT
+  ───────────────────────────────────────────── */
+  logoutBtn.addEventListener('click', () => {
+    pb.authStore.clear();
+    showLogin();
+  });
+
+  /* ─────────────────────────────────────────────
+     SCREENS
+  ───────────────────────────────────────────── */
+  function showLogin() {
+    dashScreen.classList.add('hidden');
+    loginScreen.classList.remove('hidden');
+    loginBtn.disabled = false;
+    loginBtn.textContent = 'Se connecter';
+    document.getElementById('inp-email').value    = '';
+    document.getElementById('inp-password').value = '';
+    hideError();
+  }
+
+  function showDashboard() {
+    loginScreen.classList.add('hidden');
+    dashScreen.classList.remove('hidden');
+    userEmailEl.textContent = pb.authStore.model?.email ?? '';
+    loadContacts();
+  }
+
+  /* ─────────────────────────────────────────────
+     LOAD CONTACTS
+  ───────────────────────────────────────────── */
+  refreshBtn.addEventListener('click', () => {
+    refreshIcon.style.transform = 'rotate(360deg)';
+    refreshIcon.style.transition = 'transform .4s ease';
+    setTimeout(() => {
+      refreshIcon.style.transform = '';
+      refreshIcon.style.transition = '';
+    }, 400);
+    loadContacts();
+  });
+
+  async function loadContacts() {
+    container.innerHTML = `
+      <div class="state-box">
+        <div class="icon"><span class="spinner"></span></div>
+        <p>Chargement des messages…</p>
+      </div>`;
+
+    try {
+      const records = await pb.collection('Contacts').getFullList({
+        sort: '-created',
+      });
+      renderContacts(records);
+    } catch (err) {
+      // Si auth expirée, renvoyer au login
+      if (err?.status === 401 || err?.status === 403) {
+        pb.authStore.clear();
+        showLogin();
+        return;
+      }
+      container.innerHTML = `
+        <div class="state-box is-error">
+          <div class="icon">⚠️</div>
+          <p>Erreur lors du chargement. Vérifiez les règles API de la collection Contacts.</p>
+        </div>`;
+    }
+  }
+
+  /* ─────────────────────────────────────────────
+     RENDER TABLE
+  ───────────────────────────────────────────── */
+  function renderContacts(records) {
+    if (records.length === 0) {
+      container.innerHTML = `
+        <div class="state-box">
+          <div class="icon">📭</div>
+          <p>Aucun message pour le moment. Les prochains soumis via le formulaire apparaîtront ici.</p>
+        </div>`;
+      return;
+    }
+
+    const rows = records.map(r => `
+      <tr>
+        <td class="td-name">${esc(r.name || '—')}</td>
+        <td class="td-email">
+          ${r.email ? `<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>` : '<span style="color:var(--text-3)">—</span>'}
+        </td>
+        <td class="td-phone">
+          ${r.phone ? `<a href="tel:${esc(r.phone)}">${esc(r.phone)}</a>` : '<span style="color:var(--text-3)">—</span>'}
+        </td>
+        <td class="td-message">
+          <span title="${esc(r.message || '')}">${esc(r.message || '—')}</span>
+        </td>
+        <td class="td-date">${fmtDate(r.created)}</td>
+        <td class="td-actions">
+          <button class="btn-delete" data-id="${r.id}" title="Supprimer ce message">
+            Supprimer
+          </button>
+        </td>
+      </tr>`).join('');
+
+    container.innerHTML = `
+      <div class="stats-bar">
+        <div class="stat-pill">
+          <span class="dot"></span>
+          ${records.length} message${records.length > 1 ? 's' : ''}
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Email</th>
+              <th>Téléphone</th>
+              <th>Message</th>
+              <th>Date</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+
+    container.querySelectorAll('.btn-delete').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.id));
+    });
+  }
+
+  /* ─────────────────────────────────────────────
+     MODAL SUPPRESSION
+  ───────────────────────────────────────────── */
+  function openModal(id) {
+    deleteId = id;
+    modal.classList.remove('hidden');
+    modalConfirm.disabled = false;
+    modalConfirm.textContent = 'Supprimer';
+  }
+
+  function closeModal() {
+    deleteId = null;
+    modal.classList.add('hidden');
+  }
+
+  modalCancel.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+  });
+
+  modalConfirm.addEventListener('click', async () => {
+    if (!deleteId) return;
+    modalConfirm.disabled = true;
+    modalConfirm.innerHTML = '<span class="spinner"></span>';
+
+    try {
+      await pb.collection('Contacts').delete(deleteId);
+      closeModal();
+      loadContacts();
+    } catch {
+      closeModal();
+      alert('Erreur lors de la suppression. Réessayez.');
+    }
+  });
+
+  /* ─────────────────────────────────────────────
+     UTILS
+  ───────────────────────────────────────────── */
+  function esc(str) {
+    const d = document.createElement('div');
+    d.appendChild(document.createTextNode(String(str)));
+    return d.innerHTML;
+  }
+
+  function fmtDate(iso) {
+    if (!iso) return '—';
+    return new Date(iso).toLocaleString('fr-FR', {
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit',
+    });
+  }
+
+  function showError(msg) {
+    loginError.textContent = msg;
+    loginError.classList.add('visible');
+  }
+
+  function hideError() {
+    loginError.textContent = '';
+    loginError.classList.remove('visible');
+  }
+</script>
+</body>
+</html>
