@@ -460,6 +460,40 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* ── Detail modal ── */
+    .detail-grid {
+      display: flex; flex-direction: column; gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .detail-row {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+
+    .detail-label {
+      font-size: 10px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .06em; color: var(--text-3);
+    }
+
+    .detail-value {
+      font-size: 13px; color: var(--text);
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 9px 12px;
+      line-height: 1.6; word-break: break-word;
+    }
+
+    .detail-value a { color: var(--accent-l); }
+    .detail-value a:hover { color: var(--accent); }
+
+    .detail-value.is-message {
+      white-space: pre-wrap; min-height: 80px;
+      color: var(--text-2);
+    }
+
+    .modal-box--detail { max-width: 480px; }
+
+    tbody tr { cursor: pointer; }
+
     /* ── Spinner ── */
     .spinner {
       display: inline-block;
@@ -553,6 +587,20 @@
 </div>
 
 <!-- ════════════════════════
+     MODAL DETAIL CONTACT
+════════════════════════ -->
+<div id="modal-detail" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+  <div class="modal-box modal-box--detail">
+    <h3 id="detail-title" style="margin-bottom:18px;font-size:17px;">Détail du message</h3>
+    <div class="detail-grid" id="detail-content"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="detail-close">Fermer</button>
+      <button class="btn-confirm-delete" id="detail-delete">Supprimer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════
      MODAL SUPPRESSION
 ════════════════════════ -->
 <div id="modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -590,8 +638,12 @@
   const refreshIcon     = document.getElementById('refresh-icon');
   const userEmailEl     = document.getElementById('user-email');
   const container       = document.getElementById('contacts-container');
+  const modalDetail    = document.getElementById('modal-detail');
+  const detailContent  = document.getElementById('detail-content');
+  const detailClose    = document.getElementById('detail-close');
+  const detailDelete   = document.getElementById('detail-delete');
+  let   detailRecord   = null;
   const modal           = document.getElementById('modal');
-  const modalCancel     = document.getElementById('modal-cancel');
   const modalConfirm    = document.getElementById('modal-confirm');
 
   let deleteId = null;
@@ -705,7 +757,7 @@
     }
 
     const rows = records.map(r => `
-      <tr>
+      <tr data-id="${r.id}" title="Cliquer pour voir le message complet">
         <td class="td-name">${esc(r.name || '—')}</td>
         <td class="td-email">
           ${r.email ? `<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>` : '<span style="color:var(--text-3)">—</span>'}
@@ -748,9 +800,72 @@
       </div>`;
 
     container.querySelectorAll('.btn-delete').forEach(btn => {
-      btn.addEventListener('click', () => openModal(btn.dataset.id));
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal(btn.dataset.id);
+      });
+    });
+
+    // Clic sur une ligne → ouvre le détail
+    container.querySelectorAll('tbody tr').forEach(row => {
+      row.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-delete')) return;
+        const id = row.dataset.id;
+        const record = records.find(r => r.id === id);
+        if (record) openDetail(record);
+      });
     });
   }
+
+  /* ─────────────────────────────────────────────
+     MODAL DETAIL
+  ───────────────────────────────────────────── */
+  function openDetail(record) {
+    detailRecord = record;
+    detailContent.innerHTML = `
+      <div class="detail-row">
+        <span class="detail-label">Nom</span>
+        <div class="detail-value">${esc(record.name || '—')}</div>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Email</span>
+        <div class="detail-value">
+          ${record.email ? `<a href="mailto:${esc(record.email)}">${esc(record.email)}</a>` : '—'}
+        </div>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Téléphone</span>
+        <div class="detail-value">
+          ${record.phone ? `<a href="tel:${esc(record.phone)}">${esc(record.phone)}</a>` : '—'}
+        </div>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Message</span>
+        <div class="detail-value is-message">${esc(record.message || '—')}</div>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Reçu le</span>
+        <div class="detail-value">${fmtDate(record.created)}</div>
+      </div>`;
+    modalDetail.classList.remove('hidden');
+  }
+
+  function closeDetail() {
+    detailRecord = null;
+    modalDetail.classList.add('hidden');
+  }
+
+  detailClose.addEventListener('click', closeDetail);
+
+  modalDetail.addEventListener('click', (e) => {
+    if (e.target === modalDetail) closeDetail();
+  });
+
+  detailDelete.addEventListener('click', () => {
+    if (!detailRecord) return;
+    closeDetail();
+    openModal(detailRecord.id);
+  });
 
   /* ─────────────────────────────────────────────
      MODAL SUPPRESSION
@@ -774,7 +889,10 @@
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+    if (e.key === 'Escape') {
+      if (!modal.classList.contains('hidden')) closeModal();
+      if (!modalDetail.classList.contains('hidden')) closeDetail();
+    }
   });
 
   modalConfirm.addEventListener('click', async () => {
