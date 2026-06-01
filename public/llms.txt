@@ -1,0 +1,5 @@
+User-agent: *
+Allow: query
+Disallow: train
+Contact: https://energon.cloud/contact
+Policy: https://energon.cloud/ai-usage-policy

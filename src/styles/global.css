@@ -1,159 +1,8 @@
 /* ==============================
    ENERGON 2026
    Design System — Vanilla CSS
-   Sora + DM Sans + JetBrains Mono
+   (Rest of styles async loaded)
    ============================== */
-
-/* ---------- Reset ---------- */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* ---------- Custom Properties ---------- */
-:root {
-  /* Colors — Dark Mode Default */
-  --color-bg: #09090f;
-  --color-bg-elevated: #0e0e18;
-  --color-bg-card: #141422;
-  --color-bg-overlay: rgba(9, 9, 15, 0.85);
-
-  --color-text: #e4e2f0;
-  --color-text-secondary: #9a97b0;
-  --color-text-muted: #7a7894;
-
-  --color-accent: #7c3aed;
-  --color-accent-light: #a855f7;
-  --color-accent-glow: rgba(168, 85, 247, 0.15);
-
-  --color-success: #a855f7;
-  --color-border: rgba(168, 85, 247, 0.1);
-  --color-border-hover: rgba(168, 85, 247, 0.25);
-
-  /* Gradients */
-  --gradient-hero: linear-gradient(135deg, #7c3aed, #a855f7, #06b6d4);
-  --gradient-card: linear-gradient(145deg, var(--color-bg-card), var(--color-bg-elevated));
-  --gradient-text: linear-gradient(135deg, #a855f7, #06b6d4);
-
-  /* Typography */
-  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
-  --font-display: 'Sora', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  --text-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.85rem);
-  --text-sm: clamp(0.85rem, 0.8rem + 0.25vw, 0.95rem);
-  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
-  --text-lg: clamp(1.15rem, 1.05rem + 0.5vw, 1.35rem);
-  --text-xl: clamp(1.35rem, 1.15rem + 1vw, 1.75rem);
-  --text-2xl: clamp(1.75rem, 1.4rem + 1.75vw, 2.5rem);
-  --text-3xl: clamp(2.25rem, 1.6rem + 3.25vw, 3.75rem);
-  --text-4xl: clamp(2.75rem, 1.8rem + 4.75vw, 5rem);
-
-  --leading-tight: 1.15;
-  --leading-normal: 1.6;
-  --leading-relaxed: 1.8;
-
-  --weight-normal: 400;
-  --weight-medium: 500;
-  --weight-semibold: 600;
-  --weight-bold: 700;
-  --weight-extrabold: 800;
-
-  /* Spacing */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
-  --space-32: 8rem;
-
-  /* Layout */
-  --container-max: 1200px;
-  --container-narrow: 800px;
-  --container-padding: var(--space-5);
-
-  /* Radius */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-  --radius-full: 9999px;
-
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 40px var(--color-accent-glow);
-
-  /* Transitions */
-  --transition-fast: 150ms ease;
-  --transition-base: 250ms ease;
-  --transition-slow: 400ms ease;
-
-  /* Z-Index */
-  --z-header: 100;
-  --z-overlay: 200;
-  --z-modal: 300;
-}
-
-/* Dark mode only — no light mode override */
-
-/* ---------- Base ---------- */
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-
-body {
-  font-family: var(--font-sans);
-  font-size: var(--text-base);
-  line-height: var(--leading-normal);
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
-
-/* ---------- Typography ---------- */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: var(--weight-bold);
-  line-height: var(--leading-tight);
-  color: var(--color-text);
-  text-wrap: balance;
-}
-
-p {
-  text-wrap: pretty;
-}
-
-a {
-  color: var(--color-accent-light);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-a:hover {
-  color: var(--color-accent);
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
 
 code, pre {
   font-family: var(--font-mono);
@@ -195,13 +44,6 @@ code, pre {
 }
 
 /* ---------- Utilities ---------- */
-.container {
-  width: 100%;
-  max-width: var(--container-max);
-  margin-inline: auto;
-  padding-inline: var(--container-padding);
-}
-
 .container--narrow {
   max-width: var(--container-narrow);
 }
@@ -234,64 +76,6 @@ code, pre {
   margin-inline: auto;
 }
 
-/* Gradient text */
-.gradient-text {
-  background: var(--gradient-text);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Buttons */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
-  line-height: 1;
-  text-decoration: none;
-  border: none;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  transition: all var(--transition-base);
-  white-space: nowrap;
-}
-
-.btn--primary {
-  background: var(--color-accent);
-  color: #fff;
-  box-shadow: 0 4px 15px var(--color-accent-glow);
-}
-
-.btn--primary:hover {
-  background: var(--color-accent-light);
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 25px var(--color-accent-glow);
-}
-
-.btn--secondary {
-  background: transparent;
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
-  backdrop-filter: blur(10px);
-}
-
-.btn--secondary:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent-light);
-  transform: translateY(-2px);
-}
-
-.btn--large {
-  padding: var(--space-4) var(--space-8);
-  font-size: var(--text-base);
-}
-
 /* Visually hidden */
 .sr-only {
   position: absolute;
@@ -305,33 +89,8 @@ code, pre {
   border: 0;
 }
 
-/* ---------- Animations ---------- */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 @keyframes shimmer {
   0% { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease both;
-}
-
-.animate-delay-1 { animation-delay: 0.1s; }
-.animate-delay-2 { animation-delay: 0.2s; }
-.animate-delay-3 { animation-delay: 0.3s; }
 .animate-delay-4 { animation-delay: 0.4s; }
