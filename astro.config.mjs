@@ -50,6 +50,10 @@ export default defineConfig({
   vite: {
     build: {
       cssMinify: true,
+      minify: 'esbuild',
+      rollupOptions: {
+        treeshake: true,
+      },
     },
   },
 });

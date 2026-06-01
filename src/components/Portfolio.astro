@@ -276,27 +276,12 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
 </style>
 
 <script>
-  const filters = document.querySelectorAll<HTMLElement>('.portfolio__filter');
-  const cards = document.querySelectorAll<HTMLElement>('.portfolio__card');
-
-  filters.forEach(filter => {
-    filter.addEventListener('click', () => {
-      filters.forEach(f => {
-        f.classList.remove('is-active');
-        f.setAttribute('aria-selected', 'false');
-      });
-      filter.classList.add('is-active');
-      filter.setAttribute('aria-selected', 'true');
-
-      const category = filter.dataset.filter;
-
-      cards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.classList.remove('is-hidden');
-        } else {
-          card.classList.add('is-hidden');
-        }
-      });
-    });
+  const observer = new IntersectionObserver((entries, obs) => {
+    if (entries[0].isIntersecting) {
+      import('../scripts/portfolio').then(m => m.initPortfolio());
+      obs.disconnect();
+    }
   });
+  const section = document.getElementById('portfolio');
+  if (section) observer.observe(section);
 </script>
