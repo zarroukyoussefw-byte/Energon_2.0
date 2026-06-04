@@ -20,6 +20,7 @@
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(168, 85, 247, 0.15);
   --shadow-glow: 0 0 40px var(--color-accent-glow);
   --transition-slow: 400ms ease;
   --z-overlay: 200;
