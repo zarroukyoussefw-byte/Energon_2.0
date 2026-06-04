@@ -5,7 +5,7 @@ const { portfolio } = siteContent;
 const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category))];
 ---
 
-<section class="portfolio section" id="portfolio" aria-labelledby="portfolio-heading">
+<section class="portfolio section animate-section" id="portfolio" aria-labelledby="portfolio-heading">
   <div class="container">
     <div class="portfolio__header">
       <span class="portfolio__label">// Réalisations</span>
@@ -175,7 +175,8 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
     border-radius: 14px;
     border: 1px solid rgba(168, 85, 247, 0.1);
     background: #0e0e1888;
-    transition: transform var(--transition-base);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
     animation: cardIn 0.5s ease both;
     animation-delay: var(--card-delay, 0s);
     position: relative;
@@ -189,8 +190,9 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
     border-radius: inherit;
     border: 1px solid rgba(168, 85, 247, 0.25);
     background: #141422cc;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12), 0 0 20px rgba(168, 85, 247, 0.08);
     opacity: 0;
-    transition: opacity var(--transition-base);
+    transition: opacity 0.3s ease;
     z-index: -1;
   }
 

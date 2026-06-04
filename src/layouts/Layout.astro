@@ -120,5 +120,18 @@ const localBusinessSchema = {
 <body>
   <a href="#main-content" class="skip-link">Aller au contenu principal</a>
   <slot />
+  <script>
+    if (document.readyState === 'complete') {
+      setTimeout(() => {
+        import('../scripts/scroll-animations').then(m => m.initScrollAnimations());
+      }, 500);
+    } else {
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          import('../scripts/scroll-animations').then(m => m.initScrollAnimations());
+        }, 500);
+      });
+    }
+  </script>
 </body>
 </html>

@@ -50,6 +50,17 @@ a:hover { color: var(--color-accent); }
 .animate-delay-2 { animation-delay: 0.2s; }
 .animate-delay-3 { animation-delay: 0.3s; }
 
+/* Section scroll animations */
+.animate-section {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.animate-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
 /* Hero Stats */
 .hero__stats { display: flex; gap: var(--space-8); margin-top: var(--space-10); padding-top: var(--space-8); border-top: 1px solid var(--color-border); justify-content: center; }
 .hero__stat { display: flex; flex-direction: column; gap: var(--space-1); }

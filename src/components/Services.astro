@@ -3,7 +3,7 @@ import siteContent from '../data/siteContent.json';
 const { services } = siteContent;
 ---
 
-<section class="services section" id="services" aria-labelledby="services-heading">
+<section class="services section animate-section" id="services" aria-labelledby="services-heading">
   <div class="container">
     <div class="section__header">
       <h2 id="services-heading" class="section__title">
@@ -49,7 +49,8 @@ const { services } = siteContent;
     background: var(--gradient-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    transition: transform var(--transition-base);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
     z-index: 1;
   }
   .services__card::after {
@@ -58,9 +59,9 @@ const { services } = siteContent;
     inset: -1px; /* To cover the border */
     border-radius: inherit;
     border: 1px solid var(--color-border-hover);
-    box-shadow: var(--shadow-hover);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12), 0 0 20px rgba(168, 85, 247, 0.08);
     opacity: 0;
-    transition: opacity var(--transition-base);
+    transition: opacity 0.3s ease;
     pointer-events: none;
     z-index: -1;
   }
