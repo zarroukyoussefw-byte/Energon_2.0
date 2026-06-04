@@ -108,7 +108,7 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
     font-size: var(--text-sm);
     font-weight: var(--weight-medium);
     cursor: pointer;
-    transition: transform var(--transition-fast);
+    transition: transform 0.3s ease;
     position: relative;
     z-index: 1;
   }
@@ -116,11 +116,11 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
   .portfolio__filter::before {
     content: '';
     position: absolute;
-    inset: -1px;
+    inset: 0;
     border-radius: inherit;
-    border: 1px solid rgba(168, 85, 247, 0.3);
+    background: rgba(168, 85, 247, 0.1);
     opacity: 0;
-    transition: opacity var(--transition-fast);
+    transition: opacity 0.3s ease;
     z-index: -1;
   }
 
@@ -129,9 +129,9 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
     position: absolute;
     inset: -1px;
     border-radius: inherit;
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    background: #a855f7;
     opacity: 0;
-    transition: opacity var(--transition-fast);
+    transition: opacity 0.3s ease;
     z-index: -2;
   }
 
@@ -139,7 +139,7 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
     color: #a855f7;
   }
   
-  .portfolio__filter:hover::before {
+  .portfolio__filter:hover:not(.is-active)::before {
     opacity: 1;
   }
 
@@ -175,8 +175,8 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
     border-radius: 14px;
     border: 1px solid rgba(168, 85, 247, 0.1);
     background: #0e0e1888;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     animation: cardIn 0.5s ease both;
     animation-delay: var(--card-delay, 0s);
     position: relative;
@@ -190,9 +190,9 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
     border-radius: inherit;
     border: 1px solid rgba(168, 85, 247, 0.25);
     background: #141422cc;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12), 0 0 20px rgba(168, 85, 247, 0.08);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14), 0 4px 12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(168, 85, 247, 0.15);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: -1;
   }
 
@@ -201,7 +201,7 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
   }
 
   .portfolio__card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-8px);
   }
   
   .portfolio__card:hover::before {

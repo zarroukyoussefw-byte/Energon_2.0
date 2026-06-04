@@ -29,8 +29,8 @@
 
 /* Hover states */
 a:hover { color: var(--color-accent); }
-.btn--primary { box-shadow: 0 4px 15px var(--color-accent-glow); }
-.btn--primary::before { background: var(--color-accent-light); box-shadow: 0 6px 25px var(--color-accent-glow); }
+.btn--primary { box-shadow: 0 4px 15px var(--color-accent-glow); transition: transform 0.35s ease, color 0.35s ease; }
+.btn--primary::before { background: var(--color-accent-light); box-shadow: 0 0 24px rgba(168, 85, 247, 0.3); transition: opacity 0.35s ease; }
 .btn--primary:hover { color: #fff; transform: translateY(-2px); }
 .btn--primary:hover::before { opacity: 1; }
 .btn--secondary:hover { color: var(--color-accent-light); transform: translateY(-2px); }
@@ -53,12 +53,12 @@ a:hover { color: var(--color-accent); }
 /* Section scroll animations */
 .animate-section {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(40px) scale(0.98);
 }
 .animate-section.visible {
   opacity: 1;
-  transform: translateY(0);
-  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: translateY(0) scale(1);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Hero Stats */
