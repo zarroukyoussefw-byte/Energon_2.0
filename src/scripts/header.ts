@@ -1,6 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.getElementById('hamburger-btn');
   const nav = document.getElementById('main-nav');
+  const header = document.getElementById('header');
+
+  if (header) {
+    const onScroll = () => {
+      if (window.scrollY > 100) {
+        header.classList.add('is-scrolled');
+      } else {
+        header.classList.remove('is-scrolled');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // initial check
+  }
 
   if (hamburger && nav) {
     hamburger.addEventListener('click', () => {

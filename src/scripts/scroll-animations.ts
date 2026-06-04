@@ -7,10 +7,12 @@ export function initScrollAnimations() {
   const sections = document.querySelectorAll('.animate-section');
   
   const observer = new IntersectionObserver((entries, obs) => {
+    let delayCount = 1;
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const el = entry.target as HTMLElement;
         el.style.willChange = 'opacity, transform';
+        el.style.transitionDelay = `${delayCount * 100}ms`;
         
         // Force reflow
         void el.offsetHeight;
@@ -18,10 +20,13 @@ export function initScrollAnimations() {
         el.classList.add('visible');
         obs.unobserve(el);
 
-        // Remove will-change after transition (500ms)
+        // Remove will-change after transition (800ms) + delay
         setTimeout(() => {
           el.style.willChange = 'auto';
-        }, 500);
+          el.style.transitionDelay = '';
+        }, 800 + (delayCount * 100));
+        
+        delayCount++;
       }
     });
   }, { threshold: 0.1 });
