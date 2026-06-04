@@ -29,9 +29,13 @@
 /* Hover states */
 a:hover { color: var(--color-accent); }
 .btn--primary { box-shadow: 0 4px 15px var(--color-accent-glow); }
-.btn--primary:hover { background: var(--color-accent-light); color: #fff; transform: translateY(-2px); box-shadow: 0 6px 25px var(--color-accent-glow); }
-.btn--secondary:hover { border-color: var(--color-accent); color: var(--color-accent-light); transform: translateY(-2px); }
-.header__nav-link:hover { color: var(--color-text); background: var(--color-bg-card); }
+.btn--primary::before { background: var(--color-accent-light); box-shadow: 0 6px 25px var(--color-accent-glow); }
+.btn--primary:hover { color: #fff; transform: translateY(-2px); }
+.btn--primary:hover::before { opacity: 1; }
+.btn--secondary:hover { color: var(--color-accent-light); transform: translateY(-2px); }
+.btn--secondary:hover::before { opacity: 1; }
+.header__nav-link:hover { color: var(--color-text); }
+.header__nav-link:hover::before { opacity: 1; }
 .header__hamburger:hover { border-color: var(--color-accent); }
 .header__hamburger[aria-expanded='true'] .header__hamburger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .header__hamburger[aria-expanded='true'] .header__hamburger-line:nth-child(2) { opacity: 0; }
@@ -64,7 +68,8 @@ code, pre {
 /* ---------- Accessibility ---------- */
 .skip-link {
   position: absolute;
-  top: -100%;
+  top: var(--space-4);
+  transform: translateY(-200%);
   left: var(--space-4);
   z-index: var(--z-modal);
   padding: var(--space-3) var(--space-6);
@@ -72,11 +77,11 @@ code, pre {
   color: #fff;
   font-weight: var(--weight-semibold);
   border-radius: var(--radius-sm);
-  transition: top var(--transition-fast);
+  transition: transform var(--transition-fast);
 }
 
 .skip-link:focus {
-  top: var(--space-4);
+  transform: translateY(0);
 }
 
 :focus-visible {

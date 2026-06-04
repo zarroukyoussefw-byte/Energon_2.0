@@ -49,8 +49,20 @@ const { services } = siteContent;
     background: var(--gradient-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    transition: all var(--transition-base);
-    overflow: hidden;
+    transition: transform var(--transition-base);
+    z-index: 1;
+  }
+  .services__card::after {
+    content: '';
+    position: absolute;
+    inset: -1px; /* To cover the border */
+    border-radius: inherit;
+    border: 1px solid var(--color-border-hover);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    pointer-events: none;
+    z-index: -1;
   }
 
   .services__card::before {
@@ -63,15 +75,17 @@ const { services } = siteContent;
     background: var(--gradient-hero);
     opacity: 0;
     transition: opacity var(--transition-base);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    z-index: 2;
   }
 
   .services__card:hover {
-    border-color: var(--color-border-hover);
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
   }
 
-  .services__card:hover::before {
+  .services__card:hover::before,
+  .services__card:hover::after {
     opacity: 1;
   }
 

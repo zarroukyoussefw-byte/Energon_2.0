@@ -108,18 +108,47 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
     font-size: var(--text-sm);
     font-weight: var(--weight-medium);
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: transform var(--transition-fast);
+    position: relative;
+    z-index: 1;
+  }
+
+  .portfolio__filter::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    z-index: -1;
+  }
+
+  .portfolio__filter::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    z-index: -2;
   }
 
   .portfolio__filter:hover {
-    border-color: rgba(168, 85, 247, 0.3);
     color: #a855f7;
+  }
+  
+  .portfolio__filter:hover::before {
+    opacity: 1;
   }
 
   .portfolio__filter.is-active {
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
-    border-color: transparent;
     color: #fff;
+  }
+  
+  .portfolio__filter.is-active::after {
+    opacity: 1;
   }
 
   /* Grid */
@@ -146,10 +175,23 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
     border-radius: 14px;
     border: 1px solid rgba(168, 85, 247, 0.1);
     background: #0e0e1888;
-    overflow: hidden;
-    transition: all var(--transition-base);
+    transition: transform var(--transition-base);
     animation: cardIn 0.5s ease both;
     animation-delay: var(--card-delay, 0s);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .portfolio__card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    background: #141422cc;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    z-index: -1;
   }
 
   .portfolio__card.is-hidden {
@@ -157,9 +199,11 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
   }
 
   .portfolio__card:hover {
-    border-color: rgba(168, 85, 247, 0.25);
-    background: #141422cc;
     transform: translateY(-3px);
+  }
+  
+  .portfolio__card:hover::before {
+    opacity: 1;
   }
 
   .portfolio__card:hover .portfolio__metric-value {
@@ -194,6 +238,8 @@ const categories = ['Tous', ...new Set(portfolio.items.map(item => item.category
       radial-gradient(var(--dots-color) 1px, transparent 1px),
       linear-gradient(135deg, var(--zone-bg) 0%, #0e0e18 100%);
     background-size: 16px 16px, 100% 100%;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
   }
 
   /* Orb glow */
